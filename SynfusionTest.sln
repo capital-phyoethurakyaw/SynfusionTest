@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynfusionTest", "SynfusionTest\SynfusionTest.csproj", "{B2B04D2A-B06A-4066-A0D8-DAAC6C4649DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2B04D2A-B06A-4066-A0D8-DAAC6C4649DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B04D2A-B06A-4066-A0D8-DAAC6C4649DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B04D2A-B06A-4066-A0D8-DAAC6C4649DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B04D2A-B06A-4066-A0D8-DAAC6C4649DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C94E8B3C-EA30-4836-9AE1-66844226BFA7}
+	EndGlobalSection
+EndGlobal
