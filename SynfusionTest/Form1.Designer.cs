@@ -108,7 +108,7 @@
             this.toolStripSeparator2});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(956, 41);
+            this.toolStrip2.Size = new System.Drawing.Size(949, 41);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -328,7 +328,7 @@
             this.toolStripSeparator3});
             this.toolStrip3.Location = new System.Drawing.Point(0, 41);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(956, 41);
+            this.toolStrip3.Size = new System.Drawing.Size(949, 41);
             this.toolStrip3.TabIndex = 6;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -520,7 +520,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(956, 552);
+            this.ClientSize = new System.Drawing.Size(949, 611);
             this.Controls.Add(this.toolStrip3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip2);
