@@ -16,7 +16,7 @@ namespace SynfusionTest
         {
             InitializeComponent();
             //PTK Feature 
-            //Sawkay update
+            //Sawkay updates
         }
     }
 }
