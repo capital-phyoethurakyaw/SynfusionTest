@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-
-namespace XMLCOMPARTMENT
+namespace XMLHULL
 {
 [XmlRoot(ElementName = "Compartments")]
     public class Compartments

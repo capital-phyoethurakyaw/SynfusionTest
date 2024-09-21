@@ -63,134 +63,134 @@ namespace XMLHULL
         public WindCalc WindCalc { get; set; }
     }
 
-    public class Plan
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //public class Plan
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("dPort")]
-        public double Port { get; set; }
+    //    [XmlAttribute("dPort")]
+    //    public double Port { get; set; }
 
-        [XmlAttribute("dStbd")]
-        public double Stbd { get; set; }
+    //    [XmlAttribute("dStbd")]
+    //    public double Stbd { get; set; }
 
-        [XmlAttribute("dAft")]
-        public double Aft { get; set; }
+    //    [XmlAttribute("dAft")]
+    //    public double Aft { get; set; }
 
-        [XmlAttribute("dFwd")]
-        public double Fwd { get; set; }
+    //    [XmlAttribute("dFwd")]
+    //    public double Fwd { get; set; }
 
-        [XmlElement("Outline")]
-        public Outline Outline { get; set; }
-    }
+    //    [XmlElement("Outline")]
+    //    public Outline Outline { get; set; }
+    //}
 
-    public class Profile
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //public class Profile
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("dUpper")]
-        public double Upper { get; set; }
+    //    [XmlAttribute("dUpper")]
+    //    public double Upper { get; set; }
 
-        [XmlAttribute("dLower")]
-        public double Lower { get; set; }
+    //    [XmlAttribute("dLower")]
+    //    public double Lower { get; set; }
 
-        [XmlAttribute("dAft")]
-        public double Aft { get; set; }
+    //    [XmlAttribute("dAft")]
+    //    public double Aft { get; set; }
 
-        [XmlAttribute("dFwd")]
-        public double Fwd { get; set; }
+    //    [XmlAttribute("dFwd")]
+    //    public double Fwd { get; set; }
 
-        [XmlElement("Outline")]
-        public Outline Outline { get; set; }
-    }
+    //    [XmlElement("Outline")]
+    //    public Outline Outline { get; set; }
+    //}
 
-    public class Section
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //public class Section
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("dUpper")]
-        public double Upper { get; set; }
+    //    [XmlAttribute("dUpper")]
+    //    public double Upper { get; set; }
 
-        [XmlAttribute("dLower")]
-        public double Lower { get; set; }
+    //    [XmlAttribute("dLower")]
+    //    public double Lower { get; set; }
 
-        [XmlAttribute("dPort")]
-        public double Port { get; set; }
+    //    [XmlAttribute("dPort")]
+    //    public double Port { get; set; }
 
-        [XmlAttribute("dStbd")]
-        public double Stbd { get; set; }
+    //    [XmlAttribute("dStbd")]
+    //    public double Stbd { get; set; }
 
-        [XmlElement("Outline")]
-        public Outline Outline { get; set; }
-    }
-    public class Outline
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //    [XmlElement("Outline")]
+    //    public Outline Outline { get; set; }
+    //}
+    //public class Outline
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("sID")]
-        public int ID { get; set; }
+    //    [XmlAttribute("sID")]
+    //    public int ID { get; set; }
 
-        [XmlAttribute("sName")]
-        public string Name { get; set; }
+    //    [XmlAttribute("sName")]
+    //    public string Name { get; set; }
 
-        [XmlAttribute("bIsTank")]
-        public string IsTank { get; set; }
+    //    [XmlAttribute("bIsTank")]
+    //    public string IsTank { get; set; }
 
-        [XmlAttribute("bIsGenerated")]
-        public string IsGenerated { get; set; }
+    //    [XmlAttribute("bIsGenerated")]
+    //    public string IsGenerated { get; set; }
 
-        [XmlAttribute("lCondIndex")]
-        public int CondIndex { get; set; }
+    //    [XmlAttribute("lCondIndex")]
+    //    public int CondIndex { get; set; }
 
-        [XmlElement("Pgon")]
-        public Pgon Pgon { get; set; }
+    //    [XmlElement("Pgon")]
+    //    public Pgon Pgon { get; set; }
 
-        [XmlElement("Pline")]
-        public Pline Pline { get; set; }
-    }
-    public class Pgon
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //    [XmlElement("Pline")]
+    //    public Pline Pline { get; set; }
+    //}
+    //public class Pgon
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("sID")]
-        public int ID { get; set; }
+    //    [XmlAttribute("sID")]
+    //    public int ID { get; set; }
 
-        [XmlAttribute("lCount")]
-        public int Count { get; set; }
+    //    [XmlAttribute("lCount")]
+    //    public int Count { get; set; }
 
-        [XmlAttribute("sX")]
-        public string X { get; set; }
-    }
+    //    [XmlAttribute("sX")]
+    //    public string X { get; set; }
+    //}
 
-    public class Pline
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //public class Pline
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("sID")]
-        public int ID { get; set; }
+    //    [XmlAttribute("sID")]
+    //    public int ID { get; set; }
 
-        [XmlAttribute("sName")]
-        public string Name { get; set; }
+    //    [XmlAttribute("sName")]
+    //    public string Name { get; set; }
 
-        [XmlElement("Vertices")]
-        public Vertices Vertices { get; set; }
-    }
-    public class Vertices
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //    [XmlElement("Vertices")]
+    //    public Vertices Vertices { get; set; }
+    //}
+    //public class Vertices
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("sID")]
-        public int ID { get; set; }
+    //    [XmlAttribute("sID")]
+    //    public int ID { get; set; }
 
-        [XmlAttribute("lCount")]
-        public int Count { get; set; }
-    }
+    //    [XmlAttribute("lCount")]
+    //    public int Count { get; set; }
+    //}
     public class ProfileWind2
     {
         [XmlAttribute("lVer")]
@@ -254,50 +254,50 @@ namespace XMLHULL
         public Wind Wind { get; set; }
     }
 
-    public class Spaces
-    {
-        [XmlAttribute("lVer")]
-        public int Version { get; set; }
+    //public class Spaces
+    //{
+    //    [XmlAttribute("lVer")]
+    //    public int Version { get; set; }
 
-        [XmlAttribute("sName")]
-        public string Name { get; set; }
+    //    [XmlAttribute("sName")]
+    //    public string Name { get; set; }
 
-        [XmlElement("Space")]
-        public List<Space> Space { get; set; }
-    }
+    //    [XmlElement("Space")]
+    //    public List<Space> Space { get; set; }
+    //}
 
-    public class Space
-    {
-        [XmlAttribute("sName")]
-        public string Name { get; set; }
+    //public class Space
+    //{
+    //    [XmlAttribute("sName")]
+    //    public string Name { get; set; }
 
-        [XmlAttribute("sGroup")]
-        public string Group { get; set; }
+    //    [XmlAttribute("sGroup")]
+    //    public string Group { get; set; }
 
-        [XmlAttribute("sID")]
-        public int ID { get; set; }
+    //    [XmlAttribute("sID")]
+    //    public int ID { get; set; }
 
-        [XmlAttribute("sVolID")]
-        public int VolID { get; set; }
+    //    [XmlAttribute("sVolID")]
+    //    public int VolID { get; set; }
 
-        [XmlAttribute("sVolName")]
-        public string VolName { get; set; }
+    //    [XmlAttribute("sVolName")]
+    //    public string VolName { get; set; }
 
-        [XmlAttribute("dVolFactor")]
-        public double VolFactor { get; set; }
+    //    [XmlAttribute("dVolFactor")]
+    //    public double VolFactor { get; set; }
 
-        [XmlAttribute("dWindShapeFactor")]
-        public double WindShapeFactor { get; set; }
+    //    [XmlAttribute("dWindShapeFactor")]
+    //    public double WindShapeFactor { get; set; }
 
-        [XmlAttribute("lWindProtectedSideFlag")]
-        public int WindProtectedSideFlag { get; set; }
+    //    [XmlAttribute("lWindProtectedSideFlag")]
+    //    public int WindProtectedSideFlag { get; set; }
 
-        [XmlAttribute("dWindHeightFactor")]
-        public double WindHeightFactor { get; set; }
+    //    [XmlAttribute("dWindHeightFactor")]
+    //    public double WindHeightFactor { get; set; }
 
-        [XmlElement("Transforms")]
-        public Transforms Transforms { get; set; }
-    }
+    //    [XmlElement("Transforms")]
+    //    public Transforms Transforms { get; set; }
+    //}
 
     public class Transforms
     {
