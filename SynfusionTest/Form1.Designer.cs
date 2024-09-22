@@ -712,6 +712,8 @@
             // 
             this.chkCom_Side.AccessibilityEnabled = true;
             this.chkCom_Side.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkCom_Side.Checked = true;
+            this.chkCom_Side.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCom_Side.ForeColor = System.Drawing.Color.White;
             this.chkCom_Side.Location = new System.Drawing.Point(219, 7);
             this.chkCom_Side.Name = "chkCom_Side";
@@ -724,6 +726,8 @@
             // 
             this.chkCom_Top.AccessibilityEnabled = true;
             this.chkCom_Top.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkCom_Top.Checked = true;
+            this.chkCom_Top.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCom_Top.ForeColor = System.Drawing.Color.White;
             this.chkCom_Top.Location = new System.Drawing.Point(121, 7);
             this.chkCom_Top.Name = "chkCom_Top";
@@ -757,6 +761,8 @@
             // 
             this.chkHull_Side.AccessibilityEnabled = true;
             this.chkHull_Side.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkHull_Side.Checked = true;
+            this.chkHull_Side.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkHull_Side.ForeColor = System.Drawing.Color.White;
             this.chkHull_Side.Location = new System.Drawing.Point(219, 6);
             this.chkHull_Side.Name = "chkHull_Side";
@@ -769,6 +775,8 @@
             // 
             this.chkHull_Top.AccessibilityEnabled = true;
             this.chkHull_Top.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkHull_Top.Checked = true;
+            this.chkHull_Top.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkHull_Top.ForeColor = System.Drawing.Color.White;
             this.chkHull_Top.Location = new System.Drawing.Point(121, 7);
             this.chkHull_Top.Name = "chkHull_Top";

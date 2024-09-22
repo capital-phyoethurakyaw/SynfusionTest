@@ -21,6 +21,7 @@ using Syncfusion.Windows.Forms;
 using Microsoft.Win32;
 using Syncfusion.Windows.Forms.Diagram.Controls;
 using Syncfusion.Windows.Forms.Design;
+using Syncfusion.Windows.Forms.Tools.Navigation;
 
 namespace SynfusionTest
 {
@@ -159,9 +160,12 @@ namespace SynfusionTest
                     {
                         if (compartment == null) continue;
 
-                        AddPolygonFromOutline(compartment.Profile.Outline.Pgon, 200, 100);
-                        AddPolygonFromOutline(compartment.Plan.Outline.Pgon, 200, 200);
+                        AddPolygonFromOutline(compartment.Profile.Outline.Pgon, 200, 100, "Profile");
+                        AddPolygonFromOutline(compartment.Plan.Outline.Pgon, 200, 200, "Plan");
                     }
+                    diagram1.Model.AppendChildren(ncCompartmentPlan, out int pl);
+                    diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr);
+                    diagram1.Refresh();
                 }
             }
             catch (Exception ex)
@@ -184,6 +188,7 @@ namespace SynfusionTest
 
                     AddPolylineFromOutline(hull.Profile.Outline.Pgon, 200, 300, "Profile");
                     AddPolylineFromOutline(hull.Plan.Outline.Pgon, 200, 300, "Plan");
+                 
                 }
             }
             catch (Exception ex)
@@ -192,18 +197,35 @@ namespace SynfusionTest
             }
         }
 
-        private void AddPolygonFromOutline(Pgon pgon, float offsetX, float offsetY)
+        private void AddPolygonFromOutline(Pgon pgon, float offsetX, float offsetY, string shapes)
         {
             if (pgon?.XCoordinates.Contains(",") == true)
             {
-                var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
-                var polygon = new Polygon(points.ToArray())
+
+                if (shapes == "Profile")
                 {
-                    LineStyle = { LineColor = Color.Black, LineWidth = 0.1f },
-                    FillStyle = { Color = Color.Red }
-                };
-                diagram1.Model.AppendChild(polygon);
-                diagram1.Refresh();
+                    var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
+                   var  polygon = new Polygon(points.ToArray())
+                    {
+                        LineStyle = { LineColor = Color.Black, LineWidth = 0.1f },
+                        FillStyle = { Color = Color.Green }
+                    };
+                    ncCompartmentProfile.Add(polygon);
+                   // diagram1.Model.AppendChild(polygon);
+                }
+                if (shapes == "Plan")
+                {
+                    var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
+                    var polygon = new Polygon(points.ToArray())
+                    {
+                        LineStyle = { LineColor = Color.Black, LineWidth = 0.1f },
+                        FillStyle = { Color = Color.Red }
+                    };
+                    ncCompartmentPlan.Add(polygon);
+
+                    // diagram1.Model.AppendChild(polygon);
+                }
+                //diagram1.Refresh();
             }
         }
 
@@ -464,12 +486,19 @@ namespace SynfusionTest
 
         private void checkBoxAdv1_CheckStateChanged(object sender, EventArgs e)
         {
-            
+            foreach(Node n in ncCompartmentPlan)
+            {
+                n.Visible = chkCom_Top.Checked;
+            }
+        
         }
 
         private void checkBoxAdv2_CheckStateChanged(object sender, EventArgs e)
         {
-
+            foreach (Node n in ncCompartmentProfile)
+            {
+                n.Visible = chkCom_Side.Checked;
+            }
         }
 
         private void chkHull_Top_CheckStateChanged(object sender, EventArgs e)
