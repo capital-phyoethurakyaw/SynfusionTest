@@ -22,6 +22,7 @@ using Microsoft.Win32;
 using Syncfusion.Windows.Forms.Diagram.Controls;
 using Syncfusion.Windows.Forms.Design;
 using Syncfusion.Windows.Forms.Tools.Navigation;
+using Syncfusion.Windows.Forms.Grid;
 
 namespace SynfusionTest
 {
@@ -133,17 +134,18 @@ namespace SynfusionTest
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+          //  diagram1.FitDocument();
             try
             {
                 LoadCompartmentData("C:\\Users\\Asus\\OneDrive\\Documents\\CompartmentDataFromSh2.txt");
-                LoadHullData("C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt");
+               // LoadHullData("C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt");
             }
             catch
             {
                 MessageBoxAdv.Show("The system found an error while importing, may be due to screen location issue.", "Error");
                 return;
             }
-            MessageBoxAdv.Show("The files have been imported", "Information");
+           // MessageBoxAdv.Show("The files have been imported", "Information");
         }
         private void LoadCompartmentData(string filePath)
         {
@@ -160,12 +162,32 @@ namespace SynfusionTest
                     {
                         if (compartment == null) continue;
 
-                        AddPolygonFromOutline(compartment.Profile.Outline.Pgon, 200, 100, "Profile");
+                     //   AddPolygonFromOutline(compartment.Profile.Outline.Pgon, 200, 100, "Profile");
                         AddPolygonFromOutline(compartment.Plan.Outline.Pgon, 200, 200, "Plan");
                     }
+                    float maxNegX = 0.0f;
+                    float maxNegY = 0.0f;
+                    foreach (Node n in ncCompartmentPlan)
+                    {
+                        if (Math.Abs(maxNegX) < Math.Abs(n.BoundingRectangle.Location.X))
+                        {
+                            maxNegX = Math.Abs(n.BoundingRectangle.Location.X);
+                        }
+                        if (Math.Abs(maxNegY) < Math.Abs(n.BoundingRectangle.Location.Y))
+                        {
+                            maxNegY = Math.Abs(n.BoundingRectangle.Location.Y);
+                        }
+                    }
+
+                    // diagram1.Document.View.ZoomToActual(); ;
+                    //diagram1.View.PasteOffsetX = -(int)(maxNegX + 10);
+                    //diagram1.View.PasteOffsetY =- (int)(maxNegY + 10);
                     diagram1.Model.AppendChildren(ncCompartmentPlan, out int pl);
-                    diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr);
+                   // diagram1.Controller.BringToCenter(diagram1.View.Bounds);
+                  ///  diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr);
                     diagram1.Refresh();
+                    diagram1.View.PasteOffsetX =- (int)(maxNegX    );
+                    //diagram1.View.PasteOffsetY =- (int)(maxNegY  );
                 }
             }
             catch (Exception ex)
@@ -200,8 +222,7 @@ namespace SynfusionTest
         private void AddPolygonFromOutline(Pgon pgon, float offsetX, float offsetY, string shapes)
         {
             if (pgon?.XCoordinates.Contains(",") == true)
-            {
-
+            { 
                 if (shapes == "Profile")
                 {
                     var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
@@ -268,10 +289,12 @@ namespace SynfusionTest
 
             for (int i = 0; i < lx.Length; i++)
             {
-                var xpoint = lx[i].Trim().ToFloat() + offsetX;
-                var ypoint = ly[i].Trim().ToFloat() + offsetY;
-                var transformedPoint = TransformPoint(new PointF(xpoint, ypoint), diagramWidth, diagramHeight);
-                points.Add(transformedPoint);
+                var xpoint = lx[i].Trim().ToFloat()  + offsetX;
+                var ypoint = ly[i].Trim().ToFloat()  + offsetY;
+                var transformedPoint = TransformPoint(new PointF(xpoint, ypoint), diagramWidth, diagramHeight); //ptk changed temly
+
+               points.Add(transformedPoint);
+               // points.Add(new PointF(lx[i].Trim().ToFloat(), ly[i].Trim().ToFloat()));
             }
             return points;
         }
@@ -510,13 +533,46 @@ namespace SynfusionTest
         {
             ncHullProfile.Visible = chkHull_Side.Checked;
         }
+
+        private void btnDocFit_Click(object sender, EventArgs e)
+        {
+           
+           // diagram1.View.ZoomToActual();
+            diagram1.FitDocument();  
+            //  diagram1.View.FitDocument();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            diagram1.FitDocument();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            float maxNeg = 0.0f;
+            foreach (Node n in ncCompartmentPlan)
+            {
+                if (Math.Abs(maxNeg) <   Math.Abs( n.BoundingRectangle.Location.X))
+                {
+                    maxNeg = Math.Abs(n.BoundingRectangle.Location.X);
+                }
+            }
+            diagram1.View.PasteOffsetX =   (int)(maxNeg);
+            diagram1.Refresh();
+        }
     }
     public static class StringExtensions
     {
         public static float ToFloat(this string input)
         {
             if (float.TryParse(input, out float result))
+            {
                 return result;
+            }
+            else
+            {
+                return 0f;
+            }
             throw new FormatException($"'{input}' is not a valid float.");
         }
     }

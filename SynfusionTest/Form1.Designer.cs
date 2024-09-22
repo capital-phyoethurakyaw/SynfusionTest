@@ -49,6 +49,7 @@
             this.btnPreview = new FontAwesome.Sharp.IconButton();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.btnSaveAs = new FontAwesome.Sharp.IconButton();
+            this.btnDocFit = new FontAwesome.Sharp.IconButton();
             this.btnImport = new FontAwesome.Sharp.IconButton();
             this.lblEdit = new System.Windows.Forms.Label();
             this.fpEdit = new System.Windows.Forms.FlowLayoutPanel();
@@ -78,6 +79,7 @@
             this.btnDirectedLabel = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.diagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.model1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -352,6 +354,7 @@
             this.fpFile.Controls.Add(this.btnPreview);
             this.fpFile.Controls.Add(this.btnSave);
             this.fpFile.Controls.Add(this.btnSaveAs);
+            this.fpFile.Controls.Add(this.btnDocFit);
             this.fpFile.Controls.Add(this.btnImport);
             this.fpFile.Dock = System.Windows.Forms.DockStyle.Top;
             this.fpFile.Location = new System.Drawing.Point(3, 126);
@@ -440,6 +443,24 @@
             this.btnSaveAs.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnSaveAs.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
+            // btnDocFit
+            // 
+            this.btnDocFit.BackColor = System.Drawing.Color.Black;
+            this.btnDocFit.FlatAppearance.BorderSize = 0;
+            this.btnDocFit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDocFit.ForeColor = System.Drawing.Color.White;
+            this.btnDocFit.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnDocFit.IconColor = System.Drawing.Color.Black;
+            this.btnDocFit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDocFit.Location = new System.Drawing.Point(84, 32);
+            this.btnDocFit.Name = "btnDocFit";
+            this.btnDocFit.Size = new System.Drawing.Size(75, 23);
+            this.btnDocFit.TabIndex = 13;
+            this.btnDocFit.Text = "Doc Fit";
+            this.btnDocFit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDocFit.UseVisualStyleBackColor = false;
+            this.btnDocFit.Click += new System.EventHandler(this.btnDocFit_Click);
+            // 
             // btnImport
             // 
             this.btnImport.BackColor = System.Drawing.Color.Black;
@@ -449,7 +470,7 @@
             this.btnImport.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnImport.IconColor = System.Drawing.Color.Black;
             this.btnImport.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnImport.Location = new System.Drawing.Point(84, 32);
+            this.btnImport.Location = new System.Drawing.Point(165, 32);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 12;
@@ -815,9 +836,10 @@
             this.fpLabel.Controls.Add(this.btnPolyline);
             this.fpLabel.Controls.Add(this.btnOrthoLabel);
             this.fpLabel.Controls.Add(this.btnDirectedLabel);
+            this.fpLabel.Controls.Add(this.iconButton1);
             this.fpLabel.Location = new System.Drawing.Point(3, 469);
             this.fpLabel.Name = "fpLabel";
-            this.fpLabel.Size = new System.Drawing.Size(306, 38);
+            this.fpLabel.Size = new System.Drawing.Size(306, 126);
             this.fpLabel.TabIndex = 9;
             this.fpLabel.Visible = false;
             // 
@@ -885,11 +907,29 @@
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 510);
+            this.label2.Location = new System.Drawing.Point(3, 598);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(303, 10);
             this.label2.TabIndex = 10;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.Black;
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.ForeColor = System.Drawing.Color.White;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.Location = new System.Drawing.Point(3, 32);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(75, 23);
+            this.iconButton1.TabIndex = 3;
+            this.iconButton1.Text = "MaxNegValue";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // Form1
             // 
@@ -898,7 +938,9 @@
             this.ClientSize = new System.Drawing.Size(1214, 731);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.diagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.model1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -970,5 +1012,7 @@
         private FontAwesome.Sharp.IconButton btnUngroup;
         private FontAwesome.Sharp.IconButton btnZoomOut;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private FontAwesome.Sharp.IconButton btnDocFit;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }
