@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Diagram.Binding binding2 = new Syncfusion.Windows.Forms.Diagram.Binding();
+            Syncfusion.Windows.Forms.Diagram.Binding binding1 = new Syncfusion.Windows.Forms.Diagram.Binding();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.diagram1 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
             this.model1 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
@@ -64,12 +64,12 @@
             this.lblView = new System.Windows.Forms.Label();
             this.fpView = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBoxAdv2 = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
-            this.checkBoxAdv1 = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
+            this.chkCom_Side = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
+            this.chkCom_Top = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.checkBoxAdv3 = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
-            this.checkBoxAdv4 = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
+            this.chkHull_Side = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
+            this.chkHull_Top = new Syncfusion.Windows.Forms.Tools.CheckBoxAdv();
             this.label3 = new System.Windows.Forms.Label();
             this.lblLabel = new System.Windows.Forms.Label();
             this.fpLabel = new System.Windows.Forms.FlowLayoutPanel();
@@ -90,23 +90,23 @@
             this.fpEdit.SuspendLayout();
             this.fpView.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCom_Side)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCom_Top)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHull_Side)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHull_Top)).BeginInit();
             this.fpLabel.SuspendLayout();
             this.SuspendLayout();
             // 
             // diagram1
             // 
-            binding2.DefaultConnector = null;
-            binding2.DefaultNode = null;
-            binding2.Diagram = this.diagram1;
-            binding2.Id = null;
-            binding2.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding2.Label")));
-            binding2.ParentId = null;
-            this.diagram1.Binding = binding2;
+            binding1.DefaultConnector = null;
+            binding1.DefaultNode = null;
+            binding1.Diagram = this.diagram1;
+            binding1.Id = null;
+            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
+            binding1.ParentId = null;
+            this.diagram1.Binding = binding1;
             this.diagram1.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
             this.diagram1.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
             this.diagram1.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
@@ -700,35 +700,37 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.checkBoxAdv2);
-            this.panel1.Controls.Add(this.checkBoxAdv1);
+            this.panel1.Controls.Add(this.chkCom_Side);
+            this.panel1.Controls.Add(this.chkCom_Top);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(292, 35);
             this.panel1.TabIndex = 12;
             // 
-            // checkBoxAdv2
+            // chkCom_Side
             // 
-            this.checkBoxAdv2.AccessibilityEnabled = true;
-            this.checkBoxAdv2.BeforeTouchSize = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv2.ForeColor = System.Drawing.Color.White;
-            this.checkBoxAdv2.Location = new System.Drawing.Point(219, 7);
-            this.checkBoxAdv2.Name = "checkBoxAdv2";
-            this.checkBoxAdv2.Size = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv2.TabIndex = 11;
-            this.checkBoxAdv2.Text = "Side";
+            this.chkCom_Side.AccessibilityEnabled = true;
+            this.chkCom_Side.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkCom_Side.ForeColor = System.Drawing.Color.White;
+            this.chkCom_Side.Location = new System.Drawing.Point(219, 7);
+            this.chkCom_Side.Name = "chkCom_Side";
+            this.chkCom_Side.Size = new System.Drawing.Size(70, 21);
+            this.chkCom_Side.TabIndex = 11;
+            this.chkCom_Side.Text = "Side";
+            this.chkCom_Side.CheckStateChanged += new System.EventHandler(this.checkBoxAdv2_CheckStateChanged);
             // 
-            // checkBoxAdv1
+            // chkCom_Top
             // 
-            this.checkBoxAdv1.AccessibilityEnabled = true;
-            this.checkBoxAdv1.BeforeTouchSize = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv1.ForeColor = System.Drawing.Color.White;
-            this.checkBoxAdv1.Location = new System.Drawing.Point(121, 7);
-            this.checkBoxAdv1.Name = "checkBoxAdv1";
-            this.checkBoxAdv1.Size = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv1.TabIndex = 10;
-            this.checkBoxAdv1.Text = "Top";
+            this.chkCom_Top.AccessibilityEnabled = true;
+            this.chkCom_Top.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkCom_Top.ForeColor = System.Drawing.Color.White;
+            this.chkCom_Top.Location = new System.Drawing.Point(121, 7);
+            this.chkCom_Top.Name = "chkCom_Top";
+            this.chkCom_Top.Size = new System.Drawing.Size(70, 21);
+            this.chkCom_Top.TabIndex = 10;
+            this.chkCom_Top.Text = "Top";
+            this.chkCom_Top.CheckStateChanged += new System.EventHandler(this.checkBoxAdv1_CheckStateChanged);
             // 
             // label1
             // 
@@ -736,42 +738,44 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 31);
+            this.label1.Size = new System.Drawing.Size(112, 31);
             this.label1.TabIndex = 9;
             this.label1.Text = "Compartment";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.checkBoxAdv3);
-            this.panel2.Controls.Add(this.checkBoxAdv4);
+            this.panel2.Controls.Add(this.chkHull_Side);
+            this.panel2.Controls.Add(this.chkHull_Top);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Location = new System.Drawing.Point(3, 44);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(292, 36);
             this.panel2.TabIndex = 13;
             // 
-            // checkBoxAdv3
+            // chkHull_Side
             // 
-            this.checkBoxAdv3.AccessibilityEnabled = true;
-            this.checkBoxAdv3.BeforeTouchSize = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv3.ForeColor = System.Drawing.Color.White;
-            this.checkBoxAdv3.Location = new System.Drawing.Point(219, 6);
-            this.checkBoxAdv3.Name = "checkBoxAdv3";
-            this.checkBoxAdv3.Size = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv3.TabIndex = 11;
-            this.checkBoxAdv3.Text = "Side";
+            this.chkHull_Side.AccessibilityEnabled = true;
+            this.chkHull_Side.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkHull_Side.ForeColor = System.Drawing.Color.White;
+            this.chkHull_Side.Location = new System.Drawing.Point(219, 6);
+            this.chkHull_Side.Name = "chkHull_Side";
+            this.chkHull_Side.Size = new System.Drawing.Size(70, 21);
+            this.chkHull_Side.TabIndex = 11;
+            this.chkHull_Side.Text = "Side";
+            this.chkHull_Side.CheckStateChanged += new System.EventHandler(this.chkHull_Side_CheckStateChanged);
             // 
-            // checkBoxAdv4
+            // chkHull_Top
             // 
-            this.checkBoxAdv4.AccessibilityEnabled = true;
-            this.checkBoxAdv4.BeforeTouchSize = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv4.ForeColor = System.Drawing.Color.White;
-            this.checkBoxAdv4.Location = new System.Drawing.Point(121, 7);
-            this.checkBoxAdv4.Name = "checkBoxAdv4";
-            this.checkBoxAdv4.Size = new System.Drawing.Size(70, 21);
-            this.checkBoxAdv4.TabIndex = 10;
-            this.checkBoxAdv4.Text = "Top";
+            this.chkHull_Top.AccessibilityEnabled = true;
+            this.chkHull_Top.BeforeTouchSize = new System.Drawing.Size(70, 21);
+            this.chkHull_Top.ForeColor = System.Drawing.Color.White;
+            this.chkHull_Top.Location = new System.Drawing.Point(121, 7);
+            this.chkHull_Top.Name = "chkHull_Top";
+            this.chkHull_Top.Size = new System.Drawing.Size(70, 21);
+            this.chkHull_Top.TabIndex = 10;
+            this.chkHull_Top.Text = "Top";
+            this.chkHull_Top.CheckStateChanged += new System.EventHandler(this.chkHull_Top_CheckStateChanged);
             // 
             // label3
             // 
@@ -781,7 +785,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 31);
             this.label3.TabIndex = 9;
-            this.label3.Text = "HULL";
+            this.label3.Text = "Hull";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblLabel
@@ -845,6 +849,7 @@
             this.btnOrthoLabel.Text = "OrthoLabel";
             this.btnOrthoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrthoLabel.UseVisualStyleBackColor = false;
+            this.btnOrthoLabel.Click += new System.EventHandler(this.btnOrthoLabel_Click);
             this.btnOrthoLabel.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnOrthoLabel.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
@@ -864,6 +869,7 @@
             this.btnDirectedLabel.Text = "DirectedLabel";
             this.btnDirectedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDirectedLabel.UseVisualStyleBackColor = false;
+            this.btnDirectedLabel.Click += new System.EventHandler(this.btnDirectedLabel_Click);
             this.btnDirectedLabel.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnDirectedLabel.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
@@ -897,11 +903,11 @@
             this.fpEdit.ResumeLayout(false);
             this.fpView.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCom_Side)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCom_Top)).EndInit();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkBoxAdv4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHull_Side)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkHull_Top)).EndInit();
             this.fpLabel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -929,11 +935,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
-        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv checkBoxAdv2;
-        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv checkBoxAdv1;
+        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv chkCom_Side;
+        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv chkCom_Top;
         private System.Windows.Forms.Panel panel2;
-        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv checkBoxAdv3;
-        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv checkBoxAdv4;
+        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv chkHull_Side;
+        private Syncfusion.Windows.Forms.Tools.CheckBoxAdv chkHull_Top;
         private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.IconButton btnRotate;
         private FontAwesome.Sharp.IconButton btnCopy;

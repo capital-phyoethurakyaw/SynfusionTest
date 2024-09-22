@@ -142,7 +142,7 @@ namespace SynfusionTest
                 MessageBoxAdv.Show("The system found an error while importing, may be due to screen location issue.", "Error");
                 return;
             }
-            MessageBoxAdv.Show("The files have been imported","Information");
+            MessageBoxAdv.Show("The files have been imported", "Information");
         }
         private void LoadCompartmentData(string filePath)
         {
@@ -182,8 +182,8 @@ namespace SynfusionTest
                     var hull = (Hull)serializer.Deserialize(reader);
                     if (hull == null) return;
 
-                    AddPolylineFromOutline(hull.Profile.Outline.Pgon, 200, 300);
-                    AddPolylineFromOutline(hull.Plan.Outline.Pgon, 200, 300);
+                    AddPolylineFromOutline(hull.Profile.Outline.Pgon, 200, 300, "Profile");
+                    AddPolylineFromOutline(hull.Plan.Outline.Pgon, 200, 300, "Plan");
                 }
             }
             catch (Exception ex)
@@ -207,16 +207,30 @@ namespace SynfusionTest
             }
         }
 
-        private void AddPolylineFromOutline(Pgon pgon, float offsetX, float offsetY)
+        private void AddPolylineFromOutline(Pgon pgon, float offsetX, float offsetY, string shape)
         {
             if (pgon?.XCoordinates.Contains(",") == true)
             {
                 var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
-                var polyline = new PolyLineConnector(points.ToArray())
+                if (shape == "Profile")
                 {
-                    LineStyle = { LineColor = Color.Black, LineWidth = 0.1f }
-                };
-                diagram1.Model.AppendChild(polyline);
+                    ncHullProfile = new PolyLineConnector(points.ToArray())
+                    {
+                        LineStyle = { LineColor = Color.Black, LineWidth = 0.1f }
+                    };
+                diagram1.Model.AppendChild(ncHullProfile);
+
+                }
+                if (shape == "Plan")
+                {
+                    ncHullPlan = new PolyLineConnector(points.ToArray())
+                    {
+                        LineStyle = { LineColor = Color.Black, LineWidth = 0.1f }
+                    };
+                    diagram1.Model.AppendChild(ncHullPlan);
+
+                }
+
                 diagram1.Refresh();
             }
         }
@@ -435,9 +449,37 @@ namespace SynfusionTest
             GroupOption(false);
         }
 
-        private void btnPolyline_Click(object sender, EventArgs e)
+        private void btnPolyline_Click(object sender, EventArgs e)=> SetActiveTool("PolylineLinkTool");
+        private void SetActiveTool(string toolName)
+        {
+            this.diagram1.Controller.ActivateTool(toolName);
+        }
+        private void btnOrthoLabel_Click(object sender, EventArgs e)=> SetActiveTool("OrthogonalLinkTool");//  OrgLineConnectorTool
+
+        private void btnDirectedLabel_Click(object sender, EventArgs e)=> SetActiveTool("DirectedLineLinkTool");
+        private PolyLineConnector ncHullProfile = null;
+        private PolyLineConnector ncHullPlan =null;
+        private NodeCollection ncCompartmentProfile = new NodeCollection();
+        private NodeCollection ncCompartmentPlan = new NodeCollection();
+
+        private void checkBoxAdv1_CheckStateChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void checkBoxAdv2_CheckStateChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkHull_Top_CheckStateChanged(object sender, EventArgs e)
+        {
+            ncHullPlan.Visible = chkHull_Top.Checked;
+        }
+
+        private void chkHull_Side_CheckStateChanged(object sender, EventArgs e)
+        {
+            ncHullProfile.Visible = chkHull_Side.Checked;
         }
     }
     public static class StringExtensions
