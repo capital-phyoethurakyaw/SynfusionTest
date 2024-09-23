@@ -31,6 +31,7 @@ namespace SynfusionTest
         public Form1()//pyk
         {
             InitializeComponent();
+            diagram1.DefaultContextMenuEnabled = false;
             //Develop Branch
             //PTK Feature 
             //Sawkay updates
@@ -134,18 +135,20 @@ namespace SynfusionTest
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-          //  diagram1.FitDocument();
             try
             {
+                diagram1.Model.BoundaryConstraintsEnabled = true;
+                diagram1.Model.BoundaryConstraintsEnabled = false;
+                diagram1.Model.EndUpdate();
                 LoadCompartmentData("C:\\Users\\Asus\\OneDrive\\Documents\\CompartmentDataFromSh2.txt");
-               // LoadHullData("C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt");
+                 LoadHullData("C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt");
             }
             catch
             {
                 MessageBoxAdv.Show("The system found an error while importing, may be due to screen location issue.", "Error");
                 return;
             }
-           // MessageBoxAdv.Show("The files have been imported", "Information");
+            // MessageBoxAdv.Show("The files have been imported", "Information");
         }
         private void LoadCompartmentData(string filePath)
         {
@@ -153,7 +156,7 @@ namespace SynfusionTest
             {
                 string xml = File.ReadAllText(filePath);
                 var serializer = new XmlSerializer(typeof(Compartments));
-
+                ncCompartmentPlan = new NodeCollection();
                 using (StringReader reader = new StringReader(xml))
                 {
                     var compartments = ((Compartments)serializer.Deserialize(reader))?.CompartmentList;
@@ -161,33 +164,12 @@ namespace SynfusionTest
                     foreach (var compartment in compartments)
                     {
                         if (compartment == null) continue;
-
-                     //   AddPolygonFromOutline(compartment.Profile.Outline.Pgon, 200, 100, "Profile");
+                           AddPolygonFromOutline(compartment.Profile.Outline.Pgon, 200, 100, "Profile");
                         AddPolygonFromOutline(compartment.Plan.Outline.Pgon, 200, 200, "Plan");
                     }
-                    float maxNegX = 0.0f;
-                    float maxNegY = 0.0f;
-                    foreach (Node n in ncCompartmentPlan)
-                    {
-                        if (Math.Abs(maxNegX) < Math.Abs(n.BoundingRectangle.Location.X))
-                        {
-                            maxNegX = Math.Abs(n.BoundingRectangle.Location.X);
-                        }
-                        if (Math.Abs(maxNegY) < Math.Abs(n.BoundingRectangle.Location.Y))
-                        {
-                            maxNegY = Math.Abs(n.BoundingRectangle.Location.Y);
-                        }
-                    }
-
-                    // diagram1.Document.View.ZoomToActual(); ;
-                    //diagram1.View.PasteOffsetX = -(int)(maxNegX + 10);
-                    //diagram1.View.PasteOffsetY =- (int)(maxNegY + 10);
                     diagram1.Model.AppendChildren(ncCompartmentPlan, out int pl);
-                   // diagram1.Controller.BringToCenter(diagram1.View.Bounds);
-                  ///  diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr);
+                    diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr);
                     diagram1.Refresh();
-                    diagram1.View.PasteOffsetX =- (int)(maxNegX    );
-                    //diagram1.View.PasteOffsetY =- (int)(maxNegY  );
                 }
             }
             catch (Exception ex)
@@ -210,7 +192,7 @@ namespace SynfusionTest
 
                     AddPolylineFromOutline(hull.Profile.Outline.Pgon, 200, 300, "Profile");
                     AddPolylineFromOutline(hull.Plan.Outline.Pgon, 200, 300, "Plan");
-                 
+
                 }
             }
             catch (Exception ex)
@@ -222,17 +204,17 @@ namespace SynfusionTest
         private void AddPolygonFromOutline(Pgon pgon, float offsetX, float offsetY, string shapes)
         {
             if (pgon?.XCoordinates.Contains(",") == true)
-            { 
+            {
                 if (shapes == "Profile")
                 {
                     var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
-                   var  polygon = new Polygon(points.ToArray())
+                    var polygon = new Polygon(points.ToArray())
                     {
                         LineStyle = { LineColor = Color.Black, LineWidth = 0.1f },
                         FillStyle = { Color = Color.Green }
                     };
                     ncCompartmentProfile.Add(polygon);
-                   // diagram1.Model.AppendChild(polygon);
+                    // diagram1.Model.AppendChild(polygon);
                 }
                 if (shapes == "Plan")
                 {
@@ -261,7 +243,7 @@ namespace SynfusionTest
                     {
                         LineStyle = { LineColor = Color.Black, LineWidth = 0.1f }
                     };
-                diagram1.Model.AppendChild(ncHullProfile);
+                    diagram1.Model.AppendChild(ncHullProfile);
 
                 }
                 if (shape == "Plan")
@@ -289,12 +271,12 @@ namespace SynfusionTest
 
             for (int i = 0; i < lx.Length; i++)
             {
-                var xpoint = lx[i].Trim().ToFloat()  + offsetX;
-                var ypoint = ly[i].Trim().ToFloat()  + offsetY;
-                var transformedPoint = TransformPoint(new PointF(xpoint, ypoint), diagramWidth, diagramHeight); //ptk changed temly
+                //var xpoint = lx[i].Trim().ToFloat() + offsetX;
+                //var ypoint = ly[i].Trim().ToFloat() + offsetY;
+                //var transformedPoint = TransformPoint(new PointF(xpoint, ypoint), diagramWidth, diagramHeight); //ptk changed temly
 
-               points.Add(transformedPoint);
-               // points.Add(new PointF(lx[i].Trim().ToFloat(), ly[i].Trim().ToFloat()));
+                //points.Add(transformedPoint);
+                  points.Add(new PointF(lx[i].Trim().ToFloat(), ly[i].Trim().ToFloat()));
             }
             return points;
         }
@@ -305,29 +287,36 @@ namespace SynfusionTest
             return new PointF(newX, newY);
         }
 
-        private void btnPointer_Click(object sender, EventArgs e) =>  diagram1.Controller.ActivateTool("SelectTool"); 
+        private void btnPointer_Click(object sender, EventArgs e) => diagram1.Controller.ActivateTool("SelectTool");
 
-        private void btnPan_Click(object sender, EventArgs e)=>diagram1.Controller.ActivateTool("PanTool");
+        private void btnPan_Click(object sender, EventArgs e) => diagram1.Controller.ActivateTool("PanTool");
 
-        private void btnRuler_Click(object sender, EventArgs e)=> diagram1.ShowRulers = !diagram1.ShowRulers;
+        private void btnRuler_Click(object sender, EventArgs e) => diagram1.ShowRulers = !diagram1.ShowRulers;
 
         private void btnZoom_Click(object sender, EventArgs e) => diagram1.View.ZoomIn();
 
-        private void btnZoomOut_Click(object sender, EventArgs e)=> diagram1.View.ZoomOut();
+        private void btnZoomOut_Click(object sender, EventArgs e) => diagram1.View.ZoomOut();
 
         private void btnLock_Click(object sender, EventArgs e)
         {
-            diagram1.Enabled= !diagram1.Enabled;
+            diagram1.Enabled = !diagram1.Enabled;
             var msg = "";
             if (!diagram1.Enabled)
-                msg = "The diagram have been disable.";
-            else
-                msg = "The diagram have been enable";
+            {
+                btnLock.Text = "Unlock";
+                msg = "The diagram have been disableb.";
+            }
 
-            MessageBoxAdv.Show(msg,"Information");
+            else
+            {
+                btnLock.Text = "Lock";
+                msg = "The diagram have been enable";
+            }
+
+            MessageBoxAdv.Show(msg, "Information");
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)=>Print();
+        private void btnPrint_Click(object sender, EventArgs e) => Print();
         public void Print()
         {
             if (this.diagram1 != null)
@@ -462,10 +451,17 @@ namespace SynfusionTest
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var s = diagram1.Controller.SelectionList;
-            if (s != null && s.Count >0)
+            var s = diagram1.Controller.SelectionList; 
+            if (s != null && s.Count > 0)
             {
-               diagram1.Controller.Model.RemoveRange(s);
+                if (diagram1.Controller != null && diagram1.Controller.Model != null)
+                {
+                    foreach (Node n in s)
+                    {
+                        diagram1.Model.RemoveChild(n);
+                    }
+                  //  diagram1.Controller.Model.RemoveRange(s);
+                }
             }
             diagram1.Refresh();
         }
@@ -474,7 +470,7 @@ namespace SynfusionTest
 
         private void btnUndo_Click(object sender, EventArgs e) => diagram1.Model.HistoryManager.Undo();
 
-        private void btnFlip_Click(object sender, EventArgs e)=> AddMirrorImage(diagram1);
+        private void btnFlip_Click(object sender, EventArgs e) => AddMirrorImage(diagram1);
         private void AddMirrorImage(Diagram diagramControl)
         {
 
@@ -485,7 +481,7 @@ namespace SynfusionTest
                 {
                     line.FlipX = !line.FlipX;
                 }
-            } 
+            }
         }
         private void btnReset_Click(object sender, EventArgs e) => ResetZoomAndActivateSelectTool();
 
@@ -494,26 +490,25 @@ namespace SynfusionTest
             GroupOption(false);
         }
 
-        private void btnPolyline_Click(object sender, EventArgs e)=> SetActiveTool("PolylineLinkTool");
+        private void btnPolyline_Click(object sender, EventArgs e) => SetActiveTool("PolylineLinkTool");
         private void SetActiveTool(string toolName)
         {
             this.diagram1.Controller.ActivateTool(toolName);
         }
-        private void btnOrthoLabel_Click(object sender, EventArgs e)=> SetActiveTool("OrthogonalLinkTool");//  OrgLineConnectorTool
+        private void btnOrthoLabel_Click(object sender, EventArgs e) => SetActiveTool("OrthogonalLinkTool");//  OrgLineConnectorTool
 
-        private void btnDirectedLabel_Click(object sender, EventArgs e)=> SetActiveTool("DirectedLineLinkTool");
+        private void btnDirectedLabel_Click(object sender, EventArgs e) => SetActiveTool("DirectedLineLinkTool");
         private PolyLineConnector ncHullProfile = null;
-        private PolyLineConnector ncHullPlan =null;
+        private PolyLineConnector ncHullPlan = null;
         private NodeCollection ncCompartmentProfile = new NodeCollection();
         private NodeCollection ncCompartmentPlan = new NodeCollection();
 
         private void checkBoxAdv1_CheckStateChanged(object sender, EventArgs e)
         {
-            foreach(Node n in ncCompartmentPlan)
+            foreach (Node n in ncCompartmentPlan)
             {
                 n.Visible = chkCom_Top.Checked;
             }
-        
         }
 
         private void checkBoxAdv2_CheckStateChanged(object sender, EventArgs e)
@@ -526,19 +521,20 @@ namespace SynfusionTest
 
         private void chkHull_Top_CheckStateChanged(object sender, EventArgs e)
         {
-            ncHullPlan.Visible = chkHull_Top.Checked;
+            if (ncHullPlan != null)
+                ncHullPlan.Visible = chkHull_Top.Checked;
         }
 
         private void chkHull_Side_CheckStateChanged(object sender, EventArgs e)
         {
-            ncHullProfile.Visible = chkHull_Side.Checked;
+            if (ncHullProfile != null)
+                ncHullProfile.Visible = chkHull_Side.Checked;
         }
 
         private void btnDocFit_Click(object sender, EventArgs e)
-        {
-           
-           // diagram1.View.ZoomToActual();
-            diagram1.FitDocument();  
+        { 
+            // diagram1.View.ZoomToActual();
+            diagram1.FitDocument();
             //  diagram1.View.FitDocument();
         }
 
@@ -549,16 +545,87 @@ namespace SynfusionTest
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            float maxNeg = 0.0f;
+            float maxNegX = 0.0f;
+            float maxNegY = 0.0f;
             foreach (Node n in ncCompartmentPlan)
             {
-                if (Math.Abs(maxNeg) <   Math.Abs( n.BoundingRectangle.Location.X))
+                if (Math.Abs(maxNegX) < Math.Abs(n.BoundingRectangle.Location.X))
                 {
-                    maxNeg = Math.Abs(n.BoundingRectangle.Location.X);
+                    maxNegX = Math.Abs(n.BoundingRectangle.Location.X);
+                }
+                if (Math.Abs(maxNegY) < Math.Abs(n.BoundingRectangle.Location.Y))
+                {
+                    maxNegY = Math.Abs(n.BoundingRectangle.Location.Y);
                 }
             }
-            diagram1.View.PasteOffsetX =   (int)(maxNeg);
+
+            diagram1.LayoutManager = null;
+            foreach (Node n in ncCompartmentPlan)
+            {
+                n.EditStyle.AllowMoveX = true;
+                n.EditStyle.AllowMoveY = true;
+                n.PinPoint = new PointF(n.PinPoint.X + maxNegX, n.PinPoint.Y + maxNegY);
+            }
+            foreach (Node n in ncCompartmentProfile)
+            {
+                n.EditStyle.AllowMoveX = true;
+                n.EditStyle.AllowMoveY = true;
+                n.PinPoint = new PointF(n.PinPoint.X + maxNegX, n.PinPoint.Y + maxNegY + 200);
+            }
+            ncHullPlan.PinPoint= new PointF(ncHullPlan.PinPoint.X + maxNegX, ncHullPlan.PinPoint.Y + maxNegY + 300);
+            ncHullProfile.PinPoint= new PointF(ncHullProfile.PinPoint.X + maxNegX, ncHullProfile.PinPoint.Y + maxNegY + 400);
+            //foreach (Node n in ncHullPlan)
+            //{
+            //    n.EditStyle.AllowMoveX = true;
+            //    n.EditStyle.AllowMoveY = true;
+            //    n.PinPoint = new PointF(n.PinPoint.X + maxNegX, n.PinPoint.Y + maxNegY + 200);
+            //}
+
             diagram1.Refresh();
+            //Syncfusion.Windows.Forms.Diagram.Rectangle rect1 = new Syncfusion.Windows.Forms.Diagram.Rectangle(350, 250, 100, 70);
+            //rect1.FillStyle.Color = Color.Maroon;
+            //rect1.FillStyle.ForeColor = Color.Red;
+            //rect1.FillStyle.Type = FillStyleType.LinearGradient;
+            //rect1.LineStyle.LineWidth = 0;
+            //Syncfusion.Windows.Forms.Diagram.TextNode lbl1 = new TextNode("ptk");
+            //lbl1.LineStyle.LineWidth = 0;
+            //lbl1.FontColorStyle.Color = Color.White;
+            //lbl1.Position = Position.MiddleRight;
+            //lbl1.UpdatePosition = true;
+            //rect1.Labels.Add(lbl1);
+            //diagram1.Model.AppendChild(lbl1);
+            //float maxNeg = 0.0f;
+            //foreach (Node n in ncCompartmentPlan)
+            //{
+            //    if (Math.Abs(maxNeg) < Math.Abs(n.BoundingRectangle.Location.X))
+            //    {
+            //        maxNeg = Math.Abs(n.BoundingRectangle.Location.X);
+            //    }
+            //}
+            //diagram1.Refresh();
+        }
+
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            var dl = colorDialog1.ShowDialog();
+            if (dl == DialogResult.OK)
+            { 
+                var selectNodes = diagram1.Controller.SelectionList;
+                if (selectNodes != null && selectNodes.Count > 0)
+                {
+                    foreach (Node n in selectNodes)
+                    {
+                        if (n != null && n is Polygon pg)
+                        {
+                            pg.FillStyle.Color = colorDialog1.Color;
+                        }
+                        if (n != null && n is PolylineNode pl)
+                        {
+                            pl.LineStyle.LineColor = colorDialog1.Color;
+                        }
+                    }
+                }
+            }
         }
     }
     public static class StringExtensions
