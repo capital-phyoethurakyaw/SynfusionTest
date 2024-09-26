@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Diagram.Binding binding1 = new Syncfusion.Windows.Forms.Diagram.Binding();
+            Syncfusion.Windows.Forms.Diagram.Binding binding2 = new Syncfusion.Windows.Forms.Diagram.Binding();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.diagram1 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
             this.model1 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
@@ -80,6 +80,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btnFit = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.diagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.model1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -102,13 +103,13 @@
             // 
             // diagram1
             // 
-            binding1.DefaultConnector = null;
-            binding1.DefaultNode = null;
-            binding1.Diagram = this.diagram1;
-            binding1.Id = null;
-            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
-            binding1.ParentId = null;
-            this.diagram1.Binding = binding1;
+            binding2.DefaultConnector = null;
+            binding2.DefaultNode = null;
+            binding2.Diagram = this.diagram1;
+            binding2.Id = null;
+            binding2.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding2.Label")));
+            binding2.ParentId = null;
+            this.diagram1.Binding = binding2;
             this.diagram1.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
             this.diagram1.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
             this.diagram1.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
@@ -294,7 +295,7 @@
             this.btnZoom.Name = "btnZoom";
             this.btnZoom.Size = new System.Drawing.Size(75, 23);
             this.btnZoom.TabIndex = 7;
-            this.btnZoom.Text = "Zoom";
+            this.btnZoom.Text = "ZoomIn";
             this.btnZoom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnZoom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnZoom.UseVisualStyleBackColor = false;
@@ -316,7 +317,7 @@
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(75, 23);
             this.btnZoomOut.TabIndex = 9;
-            this.btnZoomOut.Text = "ZoomOut";
+            this.btnZoomOut.Text = "Zoom";
             this.btnZoomOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnZoomOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnZoomOut.UseVisualStyleBackColor = false;
@@ -366,6 +367,7 @@
             this.fpFile.Controls.Add(this.btnPreview);
             this.fpFile.Controls.Add(this.btnSave);
             this.fpFile.Controls.Add(this.btnSaveAs);
+            this.fpFile.Controls.Add(this.btnFit);
             this.fpFile.Controls.Add(this.btnImport);
             this.fpFile.Dock = System.Windows.Forms.DockStyle.Top;
             this.fpFile.Location = new System.Drawing.Point(3, 126);
@@ -472,7 +474,7 @@
             this.btnImport.IconColor = System.Drawing.Color.White;
             this.btnImport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnImport.IconSize = 20;
-            this.btnImport.Location = new System.Drawing.Point(84, 32);
+            this.btnImport.Location = new System.Drawing.Point(165, 32);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 12;
@@ -549,6 +551,7 @@
             this.btnCopy.IconColor = System.Drawing.Color.White;
             this.btnCopy.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCopy.IconSize = 20;
+            this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCopy.Location = new System.Drawing.Point(90, 3);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(75, 23);
@@ -900,7 +903,7 @@
             this.btnPolyline.Name = "btnPolyline";
             this.btnPolyline.Size = new System.Drawing.Size(75, 23);
             this.btnPolyline.TabIndex = 0;
-            this.btnPolyline.Text = "PolyLabel";
+            this.btnPolyline.Text = "Poly";
             this.btnPolyline.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPolyline.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPolyline.UseVisualStyleBackColor = false;
@@ -922,7 +925,7 @@
             this.btnOrthoLabel.Name = "btnOrthoLabel";
             this.btnOrthoLabel.Size = new System.Drawing.Size(75, 23);
             this.btnOrthoLabel.TabIndex = 1;
-            this.btnOrthoLabel.Text = "OrthoLabel";
+            this.btnOrthoLabel.Text = "Ortho";
             this.btnOrthoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOrthoLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOrthoLabel.UseVisualStyleBackColor = false;
@@ -944,7 +947,7 @@
             this.btnDirectedLabel.Name = "btnDirectedLabel";
             this.btnDirectedLabel.Size = new System.Drawing.Size(75, 23);
             this.btnDirectedLabel.TabIndex = 2;
-            this.btnDirectedLabel.Text = "DirectedLabel";
+            this.btnDirectedLabel.Text = "Directed";
             this.btnDirectedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDirectedLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDirectedLabel.UseVisualStyleBackColor = false;
@@ -961,6 +964,26 @@
             this.label2.Size = new System.Drawing.Size(303, 10);
             this.label2.TabIndex = 10;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnFit
+            // 
+            this.btnFit.BackColor = System.Drawing.Color.Black;
+            this.btnFit.FlatAppearance.BorderSize = 0;
+            this.btnFit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFit.ForeColor = System.Drawing.Color.White;
+            this.btnFit.IconChar = FontAwesome.Sharp.IconChar.Section;
+            this.btnFit.IconColor = System.Drawing.Color.White;
+            this.btnFit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnFit.IconSize = 20;
+            this.btnFit.Location = new System.Drawing.Point(84, 32);
+            this.btnFit.Name = "btnFit";
+            this.btnFit.Size = new System.Drawing.Size(75, 23);
+            this.btnFit.TabIndex = 13;
+            this.btnFit.Text = "Fit";
+            this.btnFit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFit.UseVisualStyleBackColor = false;
+            this.btnFit.Click += new System.EventHandler(this.btnFit_Click);
             // 
             // Form1
             // 
@@ -1045,5 +1068,6 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private FontAwesome.Sharp.IconButton btnColor;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private FontAwesome.Sharp.IconButton btnFit;
     }
 }

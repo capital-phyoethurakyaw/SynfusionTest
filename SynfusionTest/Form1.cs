@@ -155,7 +155,7 @@ namespace SynfusionTest
                 diagram1.Refresh();
 
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBoxAdv.Show("The system found an error while importing, may be due to screen location issue.", "Error");
                 return;
@@ -602,8 +602,62 @@ namespace SynfusionTest
         {
             diagram1.FitDocument();
             AddToolTips();
+          
         }
+        public void ResizeDocumentToFitDiagram(Diagram diagram)
+        {
+            // Step 1: Calculate the bounding size of the diagram
+            SizeF boundingSize = GetDiagramBoundingSize(diagram);
+              
+            diagram.Model.DocumentSize = new PageSize(boundingSize.Width, boundingSize.Height);
+        }
+        public Size GetDiagramBoundingSize(Diagram diagram)
+        {
+            // Initialize minimum and maximum extents
+            float minX = float.MaxValue;
+            float minY = float.MaxValue;
+            float maxX = float.MinValue;
+            float maxY = float.MinValue;
 
+            // Iterate through all nodes (shapes) in the diagram
+            foreach (Node node in diagram.Model.Nodes)
+            {
+                // Get the bounding rectangle of the node
+                RectangleF bounds = node.BoundingRectangle;
+
+                // Update min and max extents
+                minX = Math.Min(minX, bounds.Left);
+                minY = Math.Min(minY, bounds.Top);
+                maxX = Math.Max(maxX, bounds.Right);
+                maxY = Math.Max(maxY, bounds.Bottom);
+            }
+
+            //Iterate through all connectors(lines) in the diagram
+            foreach (Node c in diagram.Model.Nodes)
+            {
+                if (c is LineConnector connector)
+                {
+                    // Get the bounding rectangle of the connector
+                    RectangleF bounds = connector.BoundingRectangle;
+
+                    // Update min and max extents
+                    minX = Math.Min(minX, bounds.Left);
+                    minY = Math.Min(minY, bounds.Top);
+                    maxX = Math.Max(maxX, bounds.Right);
+                    maxY = Math.Max(maxY, bounds.Bottom);
+                }
+            }
+
+            // Calculate the overall width and height
+            float totalWidth = maxX - minX;
+            float totalHeight = maxY - minY;
+            float padding = 50; // Add 50 pixels padding
+            totalWidth += padding;
+            totalHeight += padding; 
+            var sizeF = new SizeF(totalWidth, totalHeight);
+            return new Size((int)Math.Round(sizeF.Width), (int)Math.Round(sizeF.Height));
+
+        }
         private void ChangePintpoint()
         {
             float maxNegX = 0.0f;
@@ -659,11 +713,10 @@ namespace SynfusionTest
                     }
                 }
             }
-        }
-
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-
+        } 
+        private void btnFit_Click(object sender, EventArgs e)
+        { 
+            ResizeDocumentToFitDiagram(diagram1);
         }
     }
     public static class StringExtensions
