@@ -32,10 +32,6 @@ namespace SynfusionTest
         {
             InitializeComponent();
             diagram1.DefaultContextMenuEnabled = false;
-            //Develop Branch
-            //PTK Feature 
-            //Sawkay updates
-            //Sawlay 2nd updates
         }
 
         private void lblFile_Click(object sender, EventArgs e)
@@ -94,7 +90,6 @@ namespace SynfusionTest
                 fpView.Visible = false;
             }
         }
-
         private void lblLabel_Click(object sender, EventArgs e)
         {
             if (lblLabel.Text == "▶ Label")
@@ -120,7 +115,6 @@ namespace SynfusionTest
                 ib.BackColor = SystemColors.GrayText;
             }
         }
-
         private void btnDirectedLabel_MouseLeave(object sender, EventArgs e)
         {
             if (sender is Label l)
@@ -302,7 +296,7 @@ namespace SynfusionTest
         private void btnRuler_Click(object sender, EventArgs e) => diagram1.ShowRulers = !diagram1.ShowRulers;
 
         private void btnZoom_Click(object sender, EventArgs e) => diagram1.View.ZoomIn();
-
+        //Second half started
         private void btnZoomOut_Click(object sender, EventArgs e) => diagram1.View.ZoomOut();
 
         private void btnLock_Click(object sender, EventArgs e)
@@ -541,34 +535,12 @@ namespace SynfusionTest
 
         private void btnDocFit_Click(object sender, EventArgs e)
         { 
-            // diagram1.View.ZoomToActual();
             diagram1.FitDocument();
-         
-            //  diagram1.View.FitDocument();
         }
         private void AddToolTips()
         {
             FindButtonsRecursive(flowLayoutPanel1);
-            //foreach(Control c in flowLayoutPanel1.Controls)
-            //{
-
-            //}
-            //foreach (Control control in flowLayoutPanel1.Controls)
-            //{
-            //    // Check if the control is a container (e.g., GroupBox, Panel, etc.)
-            //    if (control.HasChildren)
-            //    {
-            //        // Nested loop to check controls inside containers
-            //        foreach (Control nestedControl in control.Controls)
-            //        {
-            //            if (nestedControl is Button)
-            //            {
-            //                Button btn = (Button)nestedControl;
-            //                MessageBox.Show($"Button found: {btn.Text}");
-            //            }
-            //        }
-            //    }
-            //}
+            
         }
         private void FindButtonsRecursive(Control parent)
         { 
@@ -602,13 +574,10 @@ namespace SynfusionTest
         {
             diagram1.FitDocument();
             AddToolTips();
-          
         }
         public void ResizeDocumentToFitDiagram(Diagram diagram)
         {
-            // Step 1: Calculate the bounding size of the diagram
-            SizeF boundingSize = GetDiagramBoundingSize(diagram);
-              
+            SizeF boundingSize = GetDiagramBoundingSize(diagram);     
             diagram.Model.DocumentSize = new PageSize(boundingSize.Width, boundingSize.Height);
         }
         public Size GetDiagramBoundingSize(Diagram diagram)
@@ -653,7 +622,7 @@ namespace SynfusionTest
             float totalHeight = maxY - minY;
             float padding = 50; // Add 50 pixels padding
             totalWidth += padding;
-            totalHeight += padding; 
+            totalHeight += padding;
             var sizeF = new SizeF(totalWidth, totalHeight);
             return new Size((int)Math.Round(sizeF.Width), (int)Math.Round(sizeF.Height));
 
@@ -717,6 +686,7 @@ namespace SynfusionTest
         private void btnFit_Click(object sender, EventArgs e)
         { 
             ResizeDocumentToFitDiagram(diagram1);
+            diagram1.FitDocument();
         }
     }
     public static class StringExtensions

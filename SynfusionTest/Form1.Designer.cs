@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Diagram.Binding binding2 = new Syncfusion.Windows.Forms.Diagram.Binding();
+            Syncfusion.Windows.Forms.Diagram.Binding binding1 = new Syncfusion.Windows.Forms.Diagram.Binding();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.diagram1 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
             this.model1 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
@@ -49,6 +49,7 @@
             this.btnPreview = new FontAwesome.Sharp.IconButton();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.btnSaveAs = new FontAwesome.Sharp.IconButton();
+            this.btnFit = new FontAwesome.Sharp.IconButton();
             this.btnImport = new FontAwesome.Sharp.IconButton();
             this.lblEdit = new System.Windows.Forms.Label();
             this.fpEdit = new System.Windows.Forms.FlowLayoutPanel();
@@ -80,7 +81,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnFit = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.diagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.model1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -103,13 +103,13 @@
             // 
             // diagram1
             // 
-            binding2.DefaultConnector = null;
-            binding2.DefaultNode = null;
-            binding2.Diagram = this.diagram1;
-            binding2.Id = null;
-            binding2.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding2.Label")));
-            binding2.ParentId = null;
-            this.diagram1.Binding = binding2;
+            binding1.DefaultConnector = null;
+            binding1.DefaultNode = null;
+            binding1.Diagram = this.diagram1;
+            binding1.Id = null;
+            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
+            binding1.ParentId = null;
+            this.diagram1.Binding = binding1;
             this.diagram1.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
             this.diagram1.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
             this.diagram1.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
@@ -120,7 +120,7 @@
             this.diagram1.Model = this.model1;
             this.diagram1.Name = "diagram1";
             this.diagram1.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram1.ScrollVirtualBounds")));
-            this.diagram1.Size = new System.Drawing.Size(778, 731);
+            this.diagram1.Size = new System.Drawing.Size(827, 731);
             this.diagram1.SmartSizeBox = false;
             this.diagram1.TabIndex = 1;
             this.diagram1.Text = "diagram1";
@@ -163,8 +163,8 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1214, 731);
-            this.splitContainer1.SplitterDistance = 778;
+            this.splitContainer1.Size = new System.Drawing.Size(1292, 731);
+            this.splitContainer1.SplitterDistance = 827;
             this.splitContainer1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -183,7 +183,7 @@
             this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(367, 731);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(366, 731);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // lblGeneral
@@ -463,6 +463,28 @@
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             this.btnSaveAs.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnSaveAs.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnFit
+            // 
+            this.btnFit.BackColor = System.Drawing.Color.Black;
+            this.btnFit.FlatAppearance.BorderSize = 0;
+            this.btnFit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFit.ForeColor = System.Drawing.Color.White;
+            this.btnFit.IconChar = FontAwesome.Sharp.IconChar.TachographDigital;
+            this.btnFit.IconColor = System.Drawing.Color.White;
+            this.btnFit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnFit.IconSize = 20;
+            this.btnFit.Location = new System.Drawing.Point(84, 32);
+            this.btnFit.Name = "btnFit";
+            this.btnFit.Size = new System.Drawing.Size(75, 23);
+            this.btnFit.TabIndex = 13;
+            this.btnFit.Text = "Fit";
+            this.btnFit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFit.UseVisualStyleBackColor = false;
+            this.btnFit.Click += new System.EventHandler(this.btnFit_Click);
+            this.btnFit.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnFit.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
             // btnImport
             // 
@@ -965,31 +987,11 @@
             this.label2.TabIndex = 10;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnFit
-            // 
-            this.btnFit.BackColor = System.Drawing.Color.Black;
-            this.btnFit.FlatAppearance.BorderSize = 0;
-            this.btnFit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFit.ForeColor = System.Drawing.Color.White;
-            this.btnFit.IconChar = FontAwesome.Sharp.IconChar.Section;
-            this.btnFit.IconColor = System.Drawing.Color.White;
-            this.btnFit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnFit.IconSize = 20;
-            this.btnFit.Location = new System.Drawing.Point(84, 32);
-            this.btnFit.Name = "btnFit";
-            this.btnFit.Size = new System.Drawing.Size(75, 23);
-            this.btnFit.TabIndex = 13;
-            this.btnFit.Text = "Fit";
-            this.btnFit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnFit.UseVisualStyleBackColor = false;
-            this.btnFit.Click += new System.EventHandler(this.btnFit_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1214, 731);
+            this.ClientSize = new System.Drawing.Size(1292, 731);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
