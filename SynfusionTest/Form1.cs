@@ -23,6 +23,7 @@ using Syncfusion.Windows.Forms.Diagram.Controls;
 using Syncfusion.Windows.Forms.Design;
 using Syncfusion.Windows.Forms.Tools.Navigation;
 using Syncfusion.Windows.Forms.Grid;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace SynfusionTest
 {
@@ -139,8 +140,41 @@ namespace SynfusionTest
                 diagram1.Model.BoundaryConstraintsEnabled = true;
                 diagram1.Model.BoundaryConstraintsEnabled = false;
                 diagram1.Model.EndUpdate();
-                LoadCompartmentData("C:\\Users\\Asus\\OneDrive\\Documents\\CompartmentDataFromSh2.txt");
-                LoadHullData("C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt");
+
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                 
+                openFileDialog.Multiselect = true;
+                 
+                openFileDialog.Filter = "Text Files (*.txt)|*.txt";
+                 
+                openFileDialog.InitialDirectory = @"C:\";
+                string fileCompartment = "";
+                string fileHull = "";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                { 
+                    string[] selectedFiles = openFileDialog.FileNames;
+                    if (selectedFiles.Count() != 2)
+                    {
+                        MessageBoxAdv.Show("Import both compartment and hull data files at once!", "Warning");
+                        return;
+                    }                    foreach (string file in selectedFiles)
+                    {
+                        if (Path.GetFileName(file)=="CompartmentDataFromSh2.txt")  // Process each file
+                        {
+                            fileCompartment = file;
+                        }
+                        if (Path.GetFileName(file) == "HULLDataFromSh2.txt")  // Process each file
+                        {
+                            fileHull = file;
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(fileCompartment))
+                    LoadCompartmentData(fileCompartment);//"C:\\Users\\Asus\\OneDrive\\Documents\\CompartmentDataFromSh2.txt"
+                if (!string.IsNullOrEmpty(fileHull)) 
+                    LoadHullData(fileHull);//"C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt"
                 ChangePintpoint();
                 diagram1.Model.AppendChild(ncHullProfile);
                 diagram1.Model.AppendChild(ncHullPlan);
@@ -151,7 +185,7 @@ namespace SynfusionTest
             }
             catch(Exception ex)
             {
-                MessageBoxAdv.Show("The system found an error while importing, may be due to screen location issue.", "Error");
+                MessageBoxAdv.Show(ex.Message, "Error");
                 return;
             }
             // MessageBoxAdv.Show("The files have been imported", "Information");
