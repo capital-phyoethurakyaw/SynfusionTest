@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 //using XMLCOMPARTMENT;
-using XMLHULL;
+using Visualizer;
 
 using System.Drawing.Printing;
 using System.Drawing.Drawing2D;
@@ -25,11 +25,11 @@ using Syncfusion.Windows.Forms.Tools.Navigation;
 using Syncfusion.Windows.Forms.Grid;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
-namespace SynfusionTest
+namespace Visualizer
 {
-    public partial class Form1 : Form
+    public partial class Visualizer : UserControl
     {
-        public Form1()//pyk
+        public Visualizer()//pyk
         {
             InitializeComponent();
             diagram1.DefaultContextMenuEnabled = false;
@@ -604,7 +604,7 @@ namespace SynfusionTest
                 }
             }
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void Visualizer_Load(object sender, EventArgs e)
         {
             diagram1.FitDocument();
             AddToolTips();

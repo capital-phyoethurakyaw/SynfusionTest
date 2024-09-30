@@ -4,6 +4,8 @@
     <TargetFramework>net48</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <UserSecretsId>092a1b56-c360-4704-b927-f004a797a102</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SynfusionTest\SynfusionTest.csproj" />
     <ProjectReference Include="..\WindowsFormsApp1\WindowsFormsApp1.csproj" />
   </ItemGroup>
 
