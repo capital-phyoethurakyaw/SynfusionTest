@@ -27,12 +27,12 @@ using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace SynfusionTest
 {
-    public partial class Visualizer : UserControl
+    public partial class Visualizer : Form
     {
         public Visualizer()//pyk
         {
             InitializeComponent();
-            diagram1.DefaultContextMenuEnabled = false;
+            //diagram1.DefaultContextMenuEnabled = false;
         }
 
         private void lblFile_Click(object sender, EventArgs e)
@@ -173,13 +173,19 @@ namespace SynfusionTest
 
                 if (!string.IsNullOrEmpty(fileCompartment))
                     LoadCompartmentData(fileCompartment);//"C:\\Users\\Asus\\OneDrive\\Documents\\CompartmentDataFromSh2.txt"
-                if (!string.IsNullOrEmpty(fileHull)) 
+                else
+                    return;
+                if (!string.IsNullOrEmpty(fileHull))
                     LoadHullData(fileHull);//"C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt"
+                else
+                    return;
                 ChangePintpoint();
                 diagram1.Model.AppendChild(ncHullProfile);
                 diagram1.Model.AppendChild(ncHullPlan);
                 diagram1.Model.AppendChildren(ncCompartmentPlan, out int pl);
                 diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr);
+                diagram1.Controller.SelectAll();
+                diagram1.FlipVertical();
                 diagram1.Refresh();
 
             }
@@ -488,16 +494,12 @@ namespace SynfusionTest
         private void btnDelete_Click(object sender, EventArgs e)
         {
             var s = diagram1.Controller.SelectionList; 
-            if (s != null && s.Count > 0)
-            {
-                if (diagram1.Controller != null && diagram1.Controller.Model != null)
-                {
-                    foreach (Node n in s)
-                    {
-                        diagram1.Model.RemoveChild(n);
-                    }
-                  //  diagram1.Controller.Model.RemoveRange(s);
-                }
+          
+            if (diagram1.Controller.SelectionList.Count > 0)
+            { 
+                var selectedNode = diagram1.Controller.SelectionList[0];
+                 
+                diagram1.Model.Nodes.Remove(selectedNode);
             }
             diagram1.Refresh();
         }
@@ -607,12 +609,40 @@ namespace SynfusionTest
         private void Visualizer_Load(object sender, EventArgs e)
         {
             diagram1.FitDocument();
+            diagram1.View.Grid.Visible =false; 
+            // diagram1.View.Origin= new Point(0,0);
             AddToolTips();
+
+            //    // Create a rectangle node to represent the water plane
+            //    // Create a wave-like shape using Bezier curves
+            //    Syncfusion.Windows.Forms.Diagram.BezierCurve wave = new Syncfusion.Windows.Forms.Diagram.BezierCurve(
+            //        new PointF[] {
+            //new PointF(100, 150), // Start point
+            //new PointF(200, 100), // Control point 1
+            //new PointF(300, 200), // Control point 2
+            //new PointF(400, 150)  // End point
+            //        }
+            //    );
+
+            //    // Customize wave color
+            //    wave.LineStyle.LineColor = Color.LightBlue;
+            //    wave.LineStyle.LineWidth = 3;
+
+            //    // Add the wave to the diagram
+            //    diagram1.Model.AppendChild(wave);
+             
+            // Duplicate the water plane and flip it vertically
+      
+
+
         }
         public void ResizeDocumentToFitDiagram(Diagram diagram)
         {
-            SizeF boundingSize = GetDiagramBoundingSize(diagram);     
-            diagram.Model.DocumentSize = new PageSize(boundingSize.Width, boundingSize.Height);
+            try
+            {
+              //  SizeF boundingSize = GetDiagramBoundingSize(diagram);
+              //  diagram.Model.DocumentSize = new PageSize(boundingSize.Width, boundingSize.Height);
+            } catch { }
         }
         public Size GetDiagramBoundingSize(Diagram diagram)
         {
@@ -718,9 +748,41 @@ namespace SynfusionTest
             }
         } 
         private void btnFit_Click(object sender, EventArgs e)
-        { 
+        {
+           // diagram1.FitDocument();
             ResizeDocumentToFitDiagram(diagram1);
             diagram1.FitDocument();
+        }
+
+        private void Visualizer_Resize(object sender, EventArgs e)
+        {
+            //diagram1.Width = this.ClientSize.Width - 20;  // Adjust based on desired padding
+            //diagram1.Height = this.ClientSize.Height - 20; // Adjust based on desired padding
+
+           // diagram1.FitDocument();
+            ResizeDocumentToFitDiagram(diagram1);
+            diagram1.FitDocument();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        { 
+             
+            int diagramWidth = (int)(diagram1.Model.DocumentSize.Width);
+            int diagramHeight = (int)(diagram1.Model.DocumentSize.Height);
+             
+            Syncfusion.Windows.Forms.Diagram.Rectangle reflection = new Syncfusion.Windows.Forms.Diagram.Rectangle(0, diagramHeight - 100, diagramWidth, 100);
+
+            // Set the gradient fill for a water effect
+            reflection.FillStyle.Type = Syncfusion.Windows.Forms.Diagram.FillStyleType.LinearGradient; 
+            reflection.FillStyle.Color = Color.LightBlue;  
+            reflection.FillStyle.ForeColor = Color.DarkBlue;    
+            reflection.FillStyle.GradientAngle = 90;  
+             
+            diagram1.Model.AppendChild(reflection);
+             
+            diagram1.Update();
+            diagram1.Refresh();
+
         }
     }
     public static class StringExtensions
