@@ -24,6 +24,7 @@ using Syncfusion.Windows.Forms.Design;
 using Syncfusion.Windows.Forms.Tools.Navigation;
 using Syncfusion.Windows.Forms.Grid;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
+using System.Windows.Shapes;
 
 namespace SynfusionTest
 {
@@ -133,38 +134,39 @@ namespace SynfusionTest
             try
             {
                 ncCompartmentPlan = new NodeCollection();
-                ncCompartmentProfile=new NodeCollection();
-                ncHullPlan=null;
-                ncHullProfile=null;
+                ncCompartmentProfile = new NodeCollection();
+                ncHullPlan = null;
+                ncHullProfile = null;
                 diagram1.FitDocument();
                 diagram1.Model.BoundaryConstraintsEnabled = true;
                 diagram1.Model.BoundaryConstraintsEnabled = false;
                 diagram1.Model.EndUpdate();
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
-                 
+
                 openFileDialog.Multiselect = true;
-                 
+
                 openFileDialog.Filter = "Text Files (*.txt)|*.txt";
-                 
+
                 openFileDialog.InitialDirectory = @"C:\";
                 string fileCompartment = "";
                 string fileHull = "";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
-                { 
+                {
                     string[] selectedFiles = openFileDialog.FileNames;
                     if (selectedFiles.Count() != 2)
                     {
                         MessageBoxAdv.Show("Import both compartment and hull data files at once!", "Warning");
                         return;
-                    }                    foreach (string file in selectedFiles)
+                    }
+                    foreach (string file in selectedFiles)
                     {
-                        if (Path.GetFileName(file)=="CompartmentDataFromSh2.txt")  // Process each file
+                        if (System.IO.Path.GetFileName(file) == "CompartmentDataFromSh2.txt")  // Process each file
                         {
                             fileCompartment = file;
                         }
-                        if (Path.GetFileName(file) == "HULLDataFromSh2.txt")  // Process each file
+                        if (System.IO.Path.GetFileName(file) == "HULLDataFromSh2.txt")  // Process each file
                         {
                             fileHull = file;
                         }
@@ -181,15 +183,17 @@ namespace SynfusionTest
                     return;
                 ChangePintpoint();
                 diagram1.Model.AppendChild(ncHullProfile);
-                diagram1.Model.AppendChild(ncHullPlan);
+                ncHullPlan.Visible = false;  //Not working please fix later
+                diagram1.Model.AppendChild(ncHullPlan);   //Not working please fix later
                 diagram1.Model.AppendChildren(ncCompartmentPlan, out int pl);
-                diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr);
+                diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr); 
+                diagram1.Model.AppendChild(ncHullPlan);
                 diagram1.Controller.SelectAll();
                 diagram1.FlipVertical();
+                AddWaterlayer();
                 diagram1.Refresh();
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBoxAdv.Show(ex.Message, "Error");
                 return;
@@ -254,7 +258,7 @@ namespace SynfusionTest
                 if (shapes == "Profile")
                 {
                     var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
-                    var polygon = new Polygon(points.ToArray())
+                    var polygon = new Syncfusion.Windows.Forms.Diagram.Polygon(points.ToArray())
                     {
                         LineStyle = { LineColor = Color.Black, LineWidth = 0.1f },
                         FillStyle = { Color = Color.Green }
@@ -264,7 +268,7 @@ namespace SynfusionTest
                 if (shapes == "Plan")
                 {
                     var points = GetTransformedPoints(pgon.XCoordinates, pgon.YCoordinates, offsetX, offsetY);
-                    var polygon = new Polygon(points.ToArray())
+                    var polygon = new Syncfusion.Windows.Forms.Diagram.Polygon(points.ToArray())
                     {
                         LineStyle = { LineColor = Color.Black, LineWidth = 0.1f },
                         FillStyle = { Color = Color.Red }
@@ -413,7 +417,7 @@ namespace SynfusionTest
             set
             {
                 this.fileName = value;
-                this.Text = Path.GetFileNameWithoutExtension(this.fileName);
+                this.Text = System.IO.Path.GetFileNameWithoutExtension(this.fileName);
             }
         }
         protected string fileName = "ptkTestPrinting";
@@ -706,6 +710,8 @@ namespace SynfusionTest
                     maxNegY = Math.Abs(n.BoundingRectangle.Location.Y);
                 }
             } 
+
+
             diagram1.LayoutManager = null;
             foreach (Node n in ncCompartmentPlan)
             {
@@ -713,15 +719,27 @@ namespace SynfusionTest
                 n.EditStyle.AllowMoveY = true;
                 n.PinPoint = new PointF(n.PinPoint.X + maxNegX,  (n.PinPoint.Y + maxNegY));
             }
+
+
             foreach (Node n in ncCompartmentProfile)
             {
                 n.EditStyle.AllowMoveX = true;
                 n.EditStyle.AllowMoveY = true;
                 n.PinPoint = new PointF(n.PinPoint.X + maxNegX,   (n.PinPoint.Y + maxNegY + 100));
             }
-            ncHullPlan.PinPoint= new PointF(ncHullPlan.PinPoint.X + maxNegX, ( ncHullPlan.PinPoint.Y + maxNegY +200));
-            ncHullProfile.PinPoint= new PointF(ncHullProfile.PinPoint.X + maxNegX,   (ncHullProfile.PinPoint.Y + maxNegY + 300));
-            diagram1.Refresh();
+
+
+            ncHullPlan.PinPoint = new PointF(ncHullPlan.PinPoint.X + maxNegX, (ncHullPlan.PinPoint.Y + maxNegY + 100));
+
+
+            ncHullProfile.PinPoint= new PointF(ncHullProfile.PinPoint.X + maxNegX,   (ncHullProfile.PinPoint.Y + maxNegY + 100));
+
+            //PointF[] p = new PointF[2];
+            //p[0] = new PointF(0, (ncHullProfile.PinPoint.Y + maxNegY + 310));
+            //var polyline = new Syncfusion.Windows.Forms.Diagram.PolylineNode(p);
+            //polyline.LineStyle.LineColor = Color.Transparent;
+          //  diagram1.Model.Nodes.Add(polyline);
+            // diagram1.Refresh();
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -735,7 +753,7 @@ namespace SynfusionTest
                 {
                     foreach (Node n in selectNodes)
                     {
-                        if (n != null && n is Polygon pg)
+                        if (n != null && n is Syncfusion.Windows.Forms.Diagram.Polygon pg)
                         {
                             pg.FillStyle.Color = colorDialog1.Color;
                         }
@@ -764,25 +782,37 @@ namespace SynfusionTest
             diagram1.FitDocument();
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        { 
-             
+        private void AddWaterlayer()
+        {  
             int diagramWidth = (int)(diagram1.Model.DocumentSize.Width);
-            int diagramHeight = (int)(diagram1.Model.DocumentSize.Height);
-             
-            Syncfusion.Windows.Forms.Diagram.Rectangle reflection = new Syncfusion.Windows.Forms.Diagram.Rectangle(0, diagramHeight - 100, diagramWidth, 100);
+            int diagramHeight = (int)(diagram1.Model.DocumentSize.Height); 
+            Syncfusion.Windows.Forms.Diagram.Rectangle reflection = new Syncfusion.Windows.Forms.Diagram.Rectangle(0, 0, diagramWidth, diagramHeight ); 
+            reflection.FillStyle.Type = Syncfusion.Windows.Forms.Diagram.FillStyleType.LinearGradient;
+            reflection.FillStyle.Color = Color.DarkBlue;
+            reflection.FillStyle.ForeColor = Color.Aqua;    
+            reflection.FillStyle.GradientAngle = 90;
+            reflection.LineStyle.LineWidth = 0f;
+            reflection.EditStyle.AllowMoveY = false; 
+            reflection.EditStyle.AllowMoveX = false;
+            diagram1.Model.AppendChild(reflection);  
+            reflection.ZOrder= 0;
+        }
 
-            // Set the gradient fill for a water effect
-            reflection.FillStyle.Type = Syncfusion.Windows.Forms.Diagram.FillStyleType.LinearGradient; 
-            reflection.FillStyle.Color = Color.LightBlue;  
-            reflection.FillStyle.ForeColor = Color.DarkBlue;    
-            reflection.FillStyle.GradientAngle = 90;  
-             
-            diagram1.Model.AppendChild(reflection);
-             
-            diagram1.Update();
-            diagram1.Refresh();
+        private void btnOpenMenu_Click(object sender, EventArgs e)
+        {
+            //if (lblOpenMenu.Text == "▶ Menu")
+            //{
+            //    lblOpenMenu.Text = "▼ Menu"; 
+            //    lblLabel.Visible = lblFile.Visible = lblView.Visible = lblEdit.Visible = lblGeneral.Visible = true;
+            //    fpGeneral.Visible = fpFile.Visible = fpView.Visible = fpEdit.Visible = fpLabel.Visible = true;
 
+            //}
+            //else
+            //{
+            //    lblOpenMenu.Text = "▶ Menu";
+            //    lblLabel.Visible = lblFile.Visible = lblView.Visible = lblEdit.Visible = lblGeneral.Visible = false;
+            //    fpGeneral.Visible = fpFile.Visible = fpView.Visible = fpEdit.Visible = fpLabel.Visible = false;
+            //}
         }
     }
     public static class StringExtensions
