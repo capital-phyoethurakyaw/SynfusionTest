@@ -25,8 +25,9 @@ using Syncfusion.Windows.Forms.Tools.Navigation;
 using Syncfusion.Windows.Forms.Grid;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using System.Windows.Shapes;
+using System.Reflection;
 
-namespace SynfusionTest
+namespace Visualizer
 {
     public partial class Visualizer : Form
     {
@@ -616,29 +617,33 @@ namespace SynfusionTest
             diagram1.View.Grid.Visible =false; 
             // diagram1.View.Origin= new Point(0,0);
             AddToolTips();
+            HideMenus();
+           
+        }
 
-            //    // Create a rectangle node to represent the water plane
-            //    // Create a wave-like shape using Bezier curves
-            //    Syncfusion.Windows.Forms.Diagram.BezierCurve wave = new Syncfusion.Windows.Forms.Diagram.BezierCurve(
-            //        new PointF[] {
-            //new PointF(100, 150), // Start point
-            //new PointF(200, 100), // Control point 1
-            //new PointF(300, 200), // Control point 2
-            //new PointF(400, 150)  // End point
-            //        }
-            //    );
+        private void HideMenus()
+        {
+            string[] menu = new string[] {
+            "Pointer",
+            "Pan",
+            "Zoom",
+            "Copy",
+            "Paste"
+            }
+           ;
+            var cm = diagram1.ContextMenuStrip;
+            foreach (ToolStripItem n in cm.Items)
+            {
+                if (!menu.Contains(n.Text))
+                {
+                    n.Visible = false;
+                }
+            }
 
-            //    // Customize wave color
-            //    wave.LineStyle.LineColor = Color.LightBlue;
-            //    wave.LineStyle.LineWidth = 3;
+            foreach(Control c in flowLayoutPanel1.Controls)
+            {
 
-            //    // Add the wave to the diagram
-            //    diagram1.Model.AppendChild(wave);
-             
-            // Duplicate the water plane and flip it vertically
-      
-
-
+            }
         }
         public void ResizeDocumentToFitDiagram(Diagram diagram)
         {

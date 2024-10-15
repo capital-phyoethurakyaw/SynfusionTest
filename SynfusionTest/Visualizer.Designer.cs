@@ -1,4 +1,4 @@
-﻿namespace SynfusionTest
+﻿namespace Visualizer
 {
     partial class Visualizer
     {
@@ -184,14 +184,15 @@
             // 
             this.fpGeneral.Controls.Add(this.btnPointer);
             this.fpGeneral.Controls.Add(this.btnPan);
-            this.fpGeneral.Controls.Add(this.btnRuler);
             this.fpGeneral.Controls.Add(this.btnZoom);
             this.fpGeneral.Controls.Add(this.btnZoomOut);
-            this.fpGeneral.Controls.Add(this.btnLock);
+            this.fpGeneral.Controls.Add(this.btnCopy);
+            this.fpGeneral.Controls.Add(this.btnPaste);
+            this.fpGeneral.Controls.Add(this.btnImport);
             this.fpGeneral.Dock = System.Windows.Forms.DockStyle.Top;
             this.fpGeneral.Location = new System.Drawing.Point(3, 26);
             this.fpGeneral.Name = "fpGeneral";
-            this.fpGeneral.Size = new System.Drawing.Size(306, 71);
+            this.fpGeneral.Size = new System.Drawing.Size(306, 94);
             this.fpGeneral.TabIndex = 1;
             this.fpGeneral.Visible = false;
             // 
@@ -201,7 +202,7 @@
             this.btnPointer.FlatAppearance.BorderSize = 0;
             this.btnPointer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPointer.ForeColor = System.Drawing.Color.White;
-            this.btnPointer.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
+            this.btnPointer.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleUp;
             this.btnPointer.IconColor = System.Drawing.Color.White;
             this.btnPointer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPointer.IconSize = 20;
@@ -249,7 +250,7 @@
             this.btnRuler.IconColor = System.Drawing.Color.White;
             this.btnRuler.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRuler.IconSize = 20;
-            this.btnRuler.Location = new System.Drawing.Point(165, 3);
+            this.btnRuler.Location = new System.Drawing.Point(3, 90);
             this.btnRuler.Name = "btnRuler";
             this.btnRuler.Size = new System.Drawing.Size(75, 23);
             this.btnRuler.TabIndex = 4;
@@ -271,7 +272,7 @@
             this.btnZoom.IconColor = System.Drawing.Color.White;
             this.btnZoom.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnZoom.IconSize = 20;
-            this.btnZoom.Location = new System.Drawing.Point(3, 32);
+            this.btnZoom.Location = new System.Drawing.Point(165, 3);
             this.btnZoom.Name = "btnZoom";
             this.btnZoom.Size = new System.Drawing.Size(75, 23);
             this.btnZoom.TabIndex = 7;
@@ -293,7 +294,7 @@
             this.btnZoomOut.IconColor = System.Drawing.Color.White;
             this.btnZoomOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnZoomOut.IconSize = 20;
-            this.btnZoomOut.Location = new System.Drawing.Point(84, 32);
+            this.btnZoomOut.Location = new System.Drawing.Point(3, 32);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(75, 23);
             this.btnZoomOut.TabIndex = 9;
@@ -315,7 +316,7 @@
             this.btnLock.IconColor = System.Drawing.Color.White;
             this.btnLock.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnLock.IconSize = 20;
-            this.btnLock.Location = new System.Drawing.Point(165, 32);
+            this.btnLock.Location = new System.Drawing.Point(165, 61);
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(75, 23);
             this.btnLock.TabIndex = 8;
@@ -331,12 +332,13 @@
             // 
             this.lblFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.lblFile.ForeColor = System.Drawing.Color.White;
-            this.lblFile.Location = new System.Drawing.Point(3, 100);
+            this.lblFile.Location = new System.Drawing.Point(3, 123);
             this.lblFile.Name = "lblFile";
             this.lblFile.Size = new System.Drawing.Size(238, 23);
             this.lblFile.TabIndex = 4;
             this.lblFile.Text = "▶ File";
             this.lblFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblFile.Visible = false;
             this.lblFile.Click += new System.EventHandler(this.lblFile_Click);
             this.lblFile.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.lblFile.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
@@ -348,9 +350,8 @@
             this.fpFile.Controls.Add(this.btnSave);
             this.fpFile.Controls.Add(this.btnSaveAs);
             this.fpFile.Controls.Add(this.btnFit);
-            this.fpFile.Controls.Add(this.btnImport);
             this.fpFile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fpFile.Location = new System.Drawing.Point(3, 126);
+            this.fpFile.Location = new System.Drawing.Point(3, 149);
             this.fpFile.Name = "fpFile";
             this.fpFile.Size = new System.Drawing.Size(306, 70);
             this.fpFile.TabIndex = 3;
@@ -476,7 +477,7 @@
             this.btnImport.IconColor = System.Drawing.Color.White;
             this.btnImport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnImport.IconSize = 20;
-            this.btnImport.Location = new System.Drawing.Point(165, 32);
+            this.btnImport.Location = new System.Drawing.Point(3, 61);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 12;
@@ -492,12 +493,13 @@
             // 
             this.lblEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.lblEdit.ForeColor = System.Drawing.Color.White;
-            this.lblEdit.Location = new System.Drawing.Point(3, 199);
+            this.lblEdit.Location = new System.Drawing.Point(3, 222);
             this.lblEdit.Name = "lblEdit";
             this.lblEdit.Size = new System.Drawing.Size(238, 23);
             this.lblEdit.TabIndex = 6;
             this.lblEdit.Text = "▶ Edit";
             this.lblEdit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblEdit.Visible = false;
             this.lblEdit.Click += new System.EventHandler(this.lblEdit_Click);
             this.lblEdit.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.lblEdit.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
@@ -505,8 +507,6 @@
             // fpEdit
             // 
             this.fpEdit.Controls.Add(this.btnRotate);
-            this.fpEdit.Controls.Add(this.btnCopy);
-            this.fpEdit.Controls.Add(this.btnPaste);
             this.fpEdit.Controls.Add(this.btnDelete);
             this.fpEdit.Controls.Add(this.btnRedo);
             this.fpEdit.Controls.Add(this.btnUndo);
@@ -514,8 +514,10 @@
             this.fpEdit.Controls.Add(this.btnReset);
             this.fpEdit.Controls.Add(this.btnUngroup);
             this.fpEdit.Controls.Add(this.btnColor);
+            this.fpEdit.Controls.Add(this.btnLock);
+            this.fpEdit.Controls.Add(this.btnRuler);
             this.fpEdit.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fpEdit.Location = new System.Drawing.Point(3, 225);
+            this.fpEdit.Location = new System.Drawing.Point(3, 248);
             this.fpEdit.Name = "fpEdit";
             this.fpEdit.Size = new System.Drawing.Size(306, 121);
             this.fpEdit.TabIndex = 5;
@@ -554,7 +556,7 @@
             this.btnCopy.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCopy.IconSize = 20;
             this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopy.Location = new System.Drawing.Point(90, 3);
+            this.btnCopy.Location = new System.Drawing.Point(84, 32);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(75, 23);
             this.btnCopy.TabIndex = 2;
@@ -576,7 +578,7 @@
             this.btnPaste.IconColor = System.Drawing.Color.White;
             this.btnPaste.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPaste.IconSize = 20;
-            this.btnPaste.Location = new System.Drawing.Point(171, 3);
+            this.btnPaste.Location = new System.Drawing.Point(165, 32);
             this.btnPaste.Name = "btnPaste";
             this.btnPaste.Size = new System.Drawing.Size(75, 23);
             this.btnPaste.TabIndex = 3;
@@ -598,7 +600,7 @@
             this.btnDelete.IconColor = System.Drawing.Color.White;
             this.btnDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnDelete.IconSize = 20;
-            this.btnDelete.Location = new System.Drawing.Point(3, 32);
+            this.btnDelete.Location = new System.Drawing.Point(90, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 4;
@@ -620,7 +622,7 @@
             this.btnRedo.IconColor = System.Drawing.Color.White;
             this.btnRedo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnRedo.IconSize = 20;
-            this.btnRedo.Location = new System.Drawing.Point(84, 32);
+            this.btnRedo.Location = new System.Drawing.Point(171, 3);
             this.btnRedo.Name = "btnRedo";
             this.btnRedo.Size = new System.Drawing.Size(75, 23);
             this.btnRedo.TabIndex = 5;
@@ -642,7 +644,7 @@
             this.btnUndo.IconColor = System.Drawing.Color.White;
             this.btnUndo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUndo.IconSize = 20;
-            this.btnUndo.Location = new System.Drawing.Point(165, 32);
+            this.btnUndo.Location = new System.Drawing.Point(3, 32);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(75, 23);
             this.btnUndo.TabIndex = 6;
@@ -664,7 +666,7 @@
             this.btnFlip.IconColor = System.Drawing.Color.White;
             this.btnFlip.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnFlip.IconSize = 20;
-            this.btnFlip.Location = new System.Drawing.Point(3, 61);
+            this.btnFlip.Location = new System.Drawing.Point(84, 32);
             this.btnFlip.Name = "btnFlip";
             this.btnFlip.Size = new System.Drawing.Size(75, 23);
             this.btnFlip.TabIndex = 7;
@@ -686,7 +688,7 @@
             this.btnReset.IconColor = System.Drawing.Color.White;
             this.btnReset.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReset.IconSize = 20;
-            this.btnReset.Location = new System.Drawing.Point(84, 61);
+            this.btnReset.Location = new System.Drawing.Point(165, 32);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 8;
@@ -708,7 +710,7 @@
             this.btnUngroup.IconColor = System.Drawing.Color.White;
             this.btnUngroup.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUngroup.IconSize = 20;
-            this.btnUngroup.Location = new System.Drawing.Point(165, 61);
+            this.btnUngroup.Location = new System.Drawing.Point(3, 61);
             this.btnUngroup.Name = "btnUngroup";
             this.btnUngroup.Size = new System.Drawing.Size(75, 23);
             this.btnUngroup.TabIndex = 9;
@@ -730,7 +732,7 @@
             this.btnColor.IconColor = System.Drawing.Color.White;
             this.btnColor.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnColor.IconSize = 20;
-            this.btnColor.Location = new System.Drawing.Point(3, 90);
+            this.btnColor.Location = new System.Drawing.Point(84, 61);
             this.btnColor.Name = "btnColor";
             this.btnColor.Size = new System.Drawing.Size(75, 23);
             this.btnColor.TabIndex = 10;
@@ -746,12 +748,13 @@
             // 
             this.lblView.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.lblView.ForeColor = System.Drawing.Color.White;
-            this.lblView.Location = new System.Drawing.Point(3, 349);
+            this.lblView.Location = new System.Drawing.Point(3, 372);
             this.lblView.Name = "lblView";
             this.lblView.Size = new System.Drawing.Size(238, 23);
             this.lblView.TabIndex = 8;
             this.lblView.Text = "▶ View";
             this.lblView.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblView.Visible = false;
             this.lblView.Click += new System.EventHandler(this.lblView_Click);
             this.lblView.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.lblView.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
@@ -762,7 +765,7 @@
             this.fpView.Controls.Add(this.panel2);
             this.fpView.Dock = System.Windows.Forms.DockStyle.Top;
             this.fpView.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.fpView.Location = new System.Drawing.Point(3, 375);
+            this.fpView.Location = new System.Drawing.Point(3, 398);
             this.fpView.Name = "fpView";
             this.fpView.Size = new System.Drawing.Size(306, 81);
             this.fpView.TabIndex = 7;
@@ -870,12 +873,13 @@
             // 
             this.lblLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.lblLabel.ForeColor = System.Drawing.Color.White;
-            this.lblLabel.Location = new System.Drawing.Point(3, 459);
+            this.lblLabel.Location = new System.Drawing.Point(3, 482);
             this.lblLabel.Name = "lblLabel";
             this.lblLabel.Size = new System.Drawing.Size(238, 23);
             this.lblLabel.TabIndex = 10;
             this.lblLabel.Text = "▶ Label";
             this.lblLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLabel.Visible = false;
             this.lblLabel.Click += new System.EventHandler(this.lblLabel_Click);
             this.lblLabel.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.lblLabel.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
@@ -885,7 +889,7 @@
             this.fpLabel.Controls.Add(this.btnPolyline);
             this.fpLabel.Controls.Add(this.btnOrthoLabel);
             this.fpLabel.Controls.Add(this.btnDirectedLabel);
-            this.fpLabel.Location = new System.Drawing.Point(3, 485);
+            this.fpLabel.Location = new System.Drawing.Point(3, 508);
             this.fpLabel.Name = "fpLabel";
             this.fpLabel.Size = new System.Drawing.Size(306, 34);
             this.fpLabel.TabIndex = 9;
@@ -961,7 +965,7 @@
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 522);
+            this.label2.Location = new System.Drawing.Point(3, 545);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(303, 10);
             this.label2.TabIndex = 10;
