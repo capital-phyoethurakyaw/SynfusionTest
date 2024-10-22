@@ -618,7 +618,9 @@ namespace Visualizer
             // diagram1.View.Origin= new Point(0,0);
             AddToolTips();
             HideMenus();
-           
+            //diagram1.Dock = DockStyle.Fill;
+            //diagram1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
         }
 
         private void HideMenus()
@@ -628,22 +630,16 @@ namespace Visualizer
             "Pan",
             "Zoom",
             "Copy",
-            "Paste"
+            "Paste",
             }
            ;
             var cm = diagram1.ContextMenuStrip;
             foreach (ToolStripItem n in cm.Items)
             {
-                if (!menu.Contains(n.Text))
-                {
-                    n.Visible = false;
-                }
+                if (!menu.Contains(n.Text)) 
+                    n.Visible = false; 
             }
-
-            foreach(Control c in flowLayoutPanel1.Controls)
-            {
-
-            }
+             
         }
         public void ResizeDocumentToFitDiagram(Diagram diagram)
         {
@@ -785,24 +781,60 @@ namespace Visualizer
            // diagram1.FitDocument();
             ResizeDocumentToFitDiagram(diagram1);
             diagram1.FitDocument();
+  //          diagram1.Dock = DockStyle.Fill;
+//            diagram1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+
         }
 
         private void AddWaterlayer()
-        {  
+        {
             int diagramWidth = (int)(diagram1.Model.DocumentSize.Width);
-            int diagramHeight = (int)(diagram1.Model.DocumentSize.Height); 
-            Syncfusion.Windows.Forms.Diagram.Rectangle reflection = new Syncfusion.Windows.Forms.Diagram.Rectangle(0, 0, diagramWidth, diagramHeight ); 
+            int diagramHeight = (int)(diagram1.Model.DocumentSize.Height);
+            Syncfusion.Windows.Forms.Diagram.Rectangle reflection = new Syncfusion.Windows.Forms.Diagram.Rectangle(0, 0, diagramWidth, diagramHeight);
             reflection.FillStyle.Type = Syncfusion.Windows.Forms.Diagram.FillStyleType.LinearGradient;
             reflection.FillStyle.Color = Color.DarkBlue;
-            reflection.FillStyle.ForeColor = Color.Aqua;    
+            reflection.FillStyle.ForeColor = Color.Aqua;
             reflection.FillStyle.GradientAngle = 90;
             reflection.LineStyle.LineWidth = 0f;
-            reflection.EditStyle.AllowMoveY = false; 
+            reflection.EditStyle.AllowMoveY = false;
             reflection.EditStyle.AllowMoveX = false;
-            diagram1.Model.AppendChild(reflection);  
-            reflection.ZOrder= 0;
+            diagram1.Model.AppendChild(reflection);
+            reflection.ZOrder = 0;
+            //reflection.CanEditSegment();
+            
+            reflection.EditStyle.AllowSelect = false;
+            reflection.EditStyle.AllowMoveY = reflection.EditStyle.AllowMoveX =false;
+            // AddPanelToDiagram();
         }
+        private void AddPanelToDiagram()
+        {
+            // Step 1: Create a Panel and configure its appearance.
+            Panel customPanel = new Panel
+            {
+                Size = new Size(200, 150),   // Set the size of the panel.
+                BackColor = Color.LightBlue, // Panel background color.
+                BorderStyle = BorderStyle.FixedSingle  // Optional border.
+            };
+            int diagramWidth = (int)(diagram1.Model.DocumentSize.Width);
+            int diagramHeight = (int)(diagram1.Model.DocumentSize.Height);
+            //// Optional: Add child controls inside the panel (like buttons or labels).
+            //Button button = new Button
+            //{
+            //    Text = "Click Me",
+            //    Location = new Point(50, 50)  // Position within the panel.
+            //};
+            //customPanel.Controls.Add(button);  // Add button to the panel.
 
+            // Step 2: Create a ControlNode to wrap the panel.
+            RectangleF panelBounds = new RectangleF(0, 0, diagramWidth, diagramHeight);
+
+            Syncfusion.Windows.Forms.Diagram.ControlNode panelNode =
+                new Syncfusion.Windows.Forms.Diagram.ControlNode(customPanel, panelBounds);
+
+            // Step 3: Add the ControlNode to the diagram's model.
+            diagram1.Model.AppendChild(panelNode);
+            panelNode.ZOrder = 0;
+        }
         private void btnOpenMenu_Click(object sender, EventArgs e)
         {
             //if (lblOpenMenu.Text == "▶ Menu")
@@ -819,6 +851,47 @@ namespace Visualizer
             //    fpGeneral.Visible = fpFile.Visible = fpView.Visible = fpEdit.Visible = fpLabel.Visible = false;
             //}
         }
+
+        private void diagram1_MouseHover(object sender, EventArgs e)
+        {
+            //this.Cursor = Cursors.Arrow; ;
+            //// Perform hit testing to detect the diagram element under the mouse.
+            //var element = diagram1.Model.Get(e.Location) as INode;
+
+            //if (element != null && element is Syncfusion.Windows.Forms.Diagram.Rectangle)
+            //{
+            //    // Change the cursor to an arrow when hovering over the rectangle.
+            //    Cursor = Cursors.Arrow;
+            //}
+            //else
+            //{
+            //    // Revert to the default cursor if not over the rectangle.
+            //    Cursor = Cursors.Default;
+            //}
+        }
+
+        private void diagram1_MouseEnter(object sender, EventArgs e)
+        {
+            diagram1.Cursor= Cursors.Arrow;
+            this.Cursor = Cursors.Arrow; ;
+        }
+
+        private void diagram1_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Perform hit testing to detect the diagram element under the mouse.
+            //var element = diagram1.Model.(e.Location)  ;
+
+            //if (element != null && element is Syncfusion.Windows.Forms.Diagram.Rectangle)
+            //{
+            //    // Change the cursor to an arrow when hovering over the rectangle.
+            //    Cursor = Cursors.Arrow;
+            //}
+            //else
+            //{
+            //    // Revert to the default cursor if not over the rectangle.
+            //    Cursor = Cursors.Default;
+            //}
+        }
     }
     public static class StringExtensions
     {
@@ -833,6 +906,21 @@ namespace Visualizer
                 return 0f;
             }
             throw new FormatException($"'{input}' is not a valid float.");
+        }
+    }
+    public class GradientPanel : Panel
+    {
+        public Color StartColor { get; set; } = Color.DarkBlue;
+        public Color EndColor { get; set; } = Color.Aqua;
+        public float GradientAngle { get; set; } = 90f;
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+                this.ClientRectangle, StartColor, EndColor, GradientAngle))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
         }
     }
 }

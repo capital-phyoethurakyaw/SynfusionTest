@@ -38,10 +38,11 @@
             this.fpGeneral = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPointer = new FontAwesome.Sharp.IconButton();
             this.btnPan = new FontAwesome.Sharp.IconButton();
-            this.btnRuler = new FontAwesome.Sharp.IconButton();
             this.btnZoom = new FontAwesome.Sharp.IconButton();
             this.btnZoomOut = new FontAwesome.Sharp.IconButton();
-            this.btnLock = new FontAwesome.Sharp.IconButton();
+            this.btnCopy = new FontAwesome.Sharp.IconButton();
+            this.btnPaste = new FontAwesome.Sharp.IconButton();
+            this.btnImport = new FontAwesome.Sharp.IconButton();
             this.lblFile = new System.Windows.Forms.Label();
             this.fpFile = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPrint = new FontAwesome.Sharp.IconButton();
@@ -49,12 +50,9 @@
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.btnSaveAs = new FontAwesome.Sharp.IconButton();
             this.btnFit = new FontAwesome.Sharp.IconButton();
-            this.btnImport = new FontAwesome.Sharp.IconButton();
             this.lblEdit = new System.Windows.Forms.Label();
             this.fpEdit = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRotate = new FontAwesome.Sharp.IconButton();
-            this.btnCopy = new FontAwesome.Sharp.IconButton();
-            this.btnPaste = new FontAwesome.Sharp.IconButton();
             this.btnDelete = new FontAwesome.Sharp.IconButton();
             this.btnRedo = new FontAwesome.Sharp.IconButton();
             this.btnUndo = new FontAwesome.Sharp.IconButton();
@@ -62,6 +60,8 @@
             this.btnReset = new FontAwesome.Sharp.IconButton();
             this.btnUngroup = new FontAwesome.Sharp.IconButton();
             this.btnColor = new FontAwesome.Sharp.IconButton();
+            this.btnLock = new FontAwesome.Sharp.IconButton();
+            this.btnRuler = new FontAwesome.Sharp.IconButton();
             this.lblView = new System.Windows.Forms.Label();
             this.fpView = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -129,6 +129,9 @@
             this.diagram1.View.Grid.MinPixelSpacing = 4F;
             this.diagram1.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds")));
             this.diagram1.View.ZoomType = Syncfusion.Windows.Forms.Diagram.ZoomType.Center;
+            this.diagram1.MouseEnter += new System.EventHandler(this.diagram1_MouseEnter);
+            this.diagram1.MouseHover += new System.EventHandler(this.diagram1_MouseHover);
+            this.diagram1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.diagram1_MouseMove);
             // 
             // model1
             // 
@@ -240,28 +243,6 @@
             this.btnPan.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnPan.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
-            // btnRuler
-            // 
-            this.btnRuler.BackColor = System.Drawing.Color.Black;
-            this.btnRuler.FlatAppearance.BorderSize = 0;
-            this.btnRuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRuler.ForeColor = System.Drawing.Color.White;
-            this.btnRuler.IconChar = FontAwesome.Sharp.IconChar.Ruler;
-            this.btnRuler.IconColor = System.Drawing.Color.White;
-            this.btnRuler.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRuler.IconSize = 20;
-            this.btnRuler.Location = new System.Drawing.Point(3, 90);
-            this.btnRuler.Name = "btnRuler";
-            this.btnRuler.Size = new System.Drawing.Size(75, 23);
-            this.btnRuler.TabIndex = 4;
-            this.btnRuler.Text = "Ruler";
-            this.btnRuler.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRuler.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRuler.UseVisualStyleBackColor = false;
-            this.btnRuler.Click += new System.EventHandler(this.btnRuler_Click);
-            this.btnRuler.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnRuler.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
             // btnZoom
             // 
             this.btnZoom.BackColor = System.Drawing.Color.Black;
@@ -306,27 +287,72 @@
             this.btnZoomOut.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnZoomOut.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
-            // btnLock
+            // btnCopy
             // 
-            this.btnLock.BackColor = System.Drawing.Color.Black;
-            this.btnLock.FlatAppearance.BorderSize = 0;
-            this.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLock.ForeColor = System.Drawing.Color.White;
-            this.btnLock.IconChar = FontAwesome.Sharp.IconChar.LockOpen;
-            this.btnLock.IconColor = System.Drawing.Color.White;
-            this.btnLock.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLock.IconSize = 20;
-            this.btnLock.Location = new System.Drawing.Point(165, 61);
-            this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(75, 23);
-            this.btnLock.TabIndex = 8;
-            this.btnLock.Text = "Lock";
-            this.btnLock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLock.UseVisualStyleBackColor = false;
-            this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
-            this.btnLock.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnLock.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            this.btnCopy.BackColor = System.Drawing.Color.Black;
+            this.btnCopy.FlatAppearance.BorderSize = 0;
+            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopy.ForeColor = System.Drawing.Color.White;
+            this.btnCopy.IconChar = FontAwesome.Sharp.IconChar.Copy;
+            this.btnCopy.IconColor = System.Drawing.Color.White;
+            this.btnCopy.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCopy.IconSize = 20;
+            this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCopy.Location = new System.Drawing.Point(84, 32);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(75, 23);
+            this.btnCopy.TabIndex = 2;
+            this.btnCopy.Text = "Copy";
+            this.btnCopy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCopy.UseVisualStyleBackColor = false;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            this.btnCopy.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnCopy.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnPaste
+            // 
+            this.btnPaste.BackColor = System.Drawing.Color.Black;
+            this.btnPaste.FlatAppearance.BorderSize = 0;
+            this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPaste.ForeColor = System.Drawing.Color.White;
+            this.btnPaste.IconChar = FontAwesome.Sharp.IconChar.Paste;
+            this.btnPaste.IconColor = System.Drawing.Color.White;
+            this.btnPaste.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPaste.IconSize = 20;
+            this.btnPaste.Location = new System.Drawing.Point(165, 32);
+            this.btnPaste.Name = "btnPaste";
+            this.btnPaste.Size = new System.Drawing.Size(75, 23);
+            this.btnPaste.TabIndex = 3;
+            this.btnPaste.Text = "Paste";
+            this.btnPaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPaste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPaste.UseVisualStyleBackColor = false;
+            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            this.btnPaste.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnPaste.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnImport
+            // 
+            this.btnImport.BackColor = System.Drawing.Color.Black;
+            this.btnImport.FlatAppearance.BorderSize = 0;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImport.ForeColor = System.Drawing.Color.White;
+            this.btnImport.IconChar = FontAwesome.Sharp.IconChar.Instalod;
+            this.btnImport.IconColor = System.Drawing.Color.White;
+            this.btnImport.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnImport.IconSize = 20;
+            this.btnImport.Location = new System.Drawing.Point(3, 61);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(75, 23);
+            this.btnImport.TabIndex = 12;
+            this.btnImport.Text = "Import";
+            this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            this.btnImport.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnImport.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
             // lblFile
             // 
@@ -467,28 +493,6 @@
             this.btnFit.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnFit.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.Color.Black;
-            this.btnImport.FlatAppearance.BorderSize = 0;
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.IconChar = FontAwesome.Sharp.IconChar.Instalod;
-            this.btnImport.IconColor = System.Drawing.Color.White;
-            this.btnImport.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnImport.IconSize = 20;
-            this.btnImport.Location = new System.Drawing.Point(3, 61);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(75, 23);
-            this.btnImport.TabIndex = 12;
-            this.btnImport.Text = "Import";
-            this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnImport.UseVisualStyleBackColor = false;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            this.btnImport.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnImport.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
             // lblEdit
             // 
             this.lblEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
@@ -544,51 +548,6 @@
             this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
             this.btnRotate.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnRotate.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.BackColor = System.Drawing.Color.Black;
-            this.btnCopy.FlatAppearance.BorderSize = 0;
-            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCopy.ForeColor = System.Drawing.Color.White;
-            this.btnCopy.IconChar = FontAwesome.Sharp.IconChar.Copy;
-            this.btnCopy.IconColor = System.Drawing.Color.White;
-            this.btnCopy.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCopy.IconSize = 20;
-            this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopy.Location = new System.Drawing.Point(84, 32);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(75, 23);
-            this.btnCopy.TabIndex = 2;
-            this.btnCopy.Text = "Copy";
-            this.btnCopy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCopy.UseVisualStyleBackColor = false;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            this.btnCopy.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnCopy.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
-            // btnPaste
-            // 
-            this.btnPaste.BackColor = System.Drawing.Color.Black;
-            this.btnPaste.FlatAppearance.BorderSize = 0;
-            this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaste.ForeColor = System.Drawing.Color.White;
-            this.btnPaste.IconChar = FontAwesome.Sharp.IconChar.Paste;
-            this.btnPaste.IconColor = System.Drawing.Color.White;
-            this.btnPaste.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPaste.IconSize = 20;
-            this.btnPaste.Location = new System.Drawing.Point(165, 32);
-            this.btnPaste.Name = "btnPaste";
-            this.btnPaste.Size = new System.Drawing.Size(75, 23);
-            this.btnPaste.TabIndex = 3;
-            this.btnPaste.Text = "Paste";
-            this.btnPaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPaste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPaste.UseVisualStyleBackColor = false;
-            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
-            this.btnPaste.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnPaste.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
             // btnDelete
             // 
@@ -743,6 +702,50 @@
             this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             this.btnColor.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnColor.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnLock
+            // 
+            this.btnLock.BackColor = System.Drawing.Color.Black;
+            this.btnLock.FlatAppearance.BorderSize = 0;
+            this.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLock.ForeColor = System.Drawing.Color.White;
+            this.btnLock.IconChar = FontAwesome.Sharp.IconChar.LockOpen;
+            this.btnLock.IconColor = System.Drawing.Color.White;
+            this.btnLock.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnLock.IconSize = 20;
+            this.btnLock.Location = new System.Drawing.Point(165, 61);
+            this.btnLock.Name = "btnLock";
+            this.btnLock.Size = new System.Drawing.Size(75, 23);
+            this.btnLock.TabIndex = 8;
+            this.btnLock.Text = "Lock";
+            this.btnLock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLock.UseVisualStyleBackColor = false;
+            this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
+            this.btnLock.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnLock.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnRuler
+            // 
+            this.btnRuler.BackColor = System.Drawing.Color.Black;
+            this.btnRuler.FlatAppearance.BorderSize = 0;
+            this.btnRuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRuler.ForeColor = System.Drawing.Color.White;
+            this.btnRuler.IconChar = FontAwesome.Sharp.IconChar.Ruler;
+            this.btnRuler.IconColor = System.Drawing.Color.White;
+            this.btnRuler.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRuler.IconSize = 20;
+            this.btnRuler.Location = new System.Drawing.Point(3, 90);
+            this.btnRuler.Name = "btnRuler";
+            this.btnRuler.Size = new System.Drawing.Size(75, 23);
+            this.btnRuler.TabIndex = 4;
+            this.btnRuler.Text = "Ruler";
+            this.btnRuler.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRuler.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRuler.UseVisualStyleBackColor = false;
+            this.btnRuler.Click += new System.EventHandler(this.btnRuler_Click);
+            this.btnRuler.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnRuler.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
             // lblView
             // 
