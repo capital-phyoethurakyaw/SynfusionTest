@@ -120,6 +120,15 @@ namespace Visualizer
             {
                 ib.BackColor = SystemColors.GrayText;
             }
+
+            if (sender is Label lblmenu && lblmenu.Name == "lblMenuSetting")
+            {
+                //if (pnlMenus.Text == "◀")
+                //    pnlMenus.Text = "▼";
+                //else
+                //    pnlMenus.Text = "◀";
+                ShowMenuWithAnimation();
+            }
         }
         private void btnDirectedLabel_MouseLeave(object sender, EventArgs e)
         {
@@ -130,6 +139,18 @@ namespace Visualizer
             if (sender is IconButton ib)
             {
                 ib.BackColor = Color.Black;
+            }
+            //if (sender is Label lblmenu && lblmenu.Name == "lblMenuSetting")
+            //{
+            //    ShowMenuWithAnimation();
+            //}
+            if (sender is Label lblmenu && lblmenu.Name == "lblMenuSetting")
+            {
+                if (pnlMenus.Text == "◀")
+                    pnlMenus.Text = "▼";
+                else
+                    pnlMenus.Text = "◀";
+                //ShowMenuWithAnimation();
             }
         }
 
@@ -491,6 +512,9 @@ namespace Visualizer
         {
             _activeDiagram.Controller.Copy();
             btnPaste.Enabled = true;
+
+            CopySelectedNodeToClipboard(_activeDiagram);
+
         }
         private void RotateSelectedNodes(float angle)
         {
@@ -658,7 +682,7 @@ namespace Visualizer
             MakeSettingForDiagram(diagram2);
             diagram1.GotFocus += Diagram1_GotFocus;
             diagram2.GotFocus += Diagram2_GotFocus;
-
+            PanelHeight= pnlMenus.Height;
         }
 
         private void Diagram2_GotFocus(object sender, EventArgs e)
@@ -674,7 +698,24 @@ namespace Visualizer
             _activeDiagram.Refresh();
             _activeDiagram.UpdateStyles();
         }
+        public void CopySelectedNodeToClipboard(Diagram diagram)
+        { 
+            if (diagram.Controller.SelectionList.Count > 0)
+            { 
+                RectangleF bounds = diagram.Controller.GetBoundingRect(diagram.Controller.SelectionList, MeasureUnits.Pixel);
+                Bitmap bitmap = new Bitmap((int)bounds.Width, (int)bounds.Height);
 
+                using (Graphics g = Graphics.FromImage(bitmap))
+                {
+                    g.Clear(Color.White);  
+                     
+                    g.TranslateTransform(-bounds.X, -bounds.Y);
+                     
+                    foreach (Node node in diagram.Controller.SelectionList.OfType<Node>())  node.Draw(g);  
+                } 
+                Clipboard.SetImage(bitmap); 
+            } 
+        }
         private void MakeSettingForDiagram(Diagram diagram)
         {
             diagram.FitDocument();
@@ -888,21 +929,17 @@ namespace Visualizer
             diagram1.FitDocument();
         }
         private void ResizeDiagram(Diagram diagram)
-        {
-            //diagram1.Width = this.ClientSize.Width - 20;  // Adjust based on desired padding
-            //diagram1.Height = this.ClientSize.Height - 20; // Adjust based on desired padding
-
-            // diagram1.FitDocument();
-            //ResizeDocumentToFitDiagram(diagram);
+        {  
             diagram.FitDocument();
-            //          diagram1.Dock = DockStyle.Fill;
-            //            diagram1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            diagram.Update();
+            diagram.Refresh();
+            diagram.EndUpdate();
+            diagram.UpdateStyles(); 
         }
         private void Visualizer_Resize(object sender, EventArgs e)
         {
             ResizeDiagram(diagram1);
-            ResizeDiagram(diagram2);
-
+            ResizeDiagram(diagram2); 
         }
 
         private void AddWaterlayer(Diagram diagram)
@@ -1056,11 +1093,63 @@ namespace Visualizer
             // Step 3: Refresh the diagram to reflect the new positions
             diagram.Refresh();
         }
+        private Button triggerButton;
+
+        private void SetupTriggerButton()
+        {
+            triggerButton = new Button
+            {
+                Text = "Menu",
+                Width = 100,
+                Height = 40,
+                Location = new Point(10, 10)
+            };
+
+            //// Add hover or click event to trigger the menu
+            //triggerButton.MouseEnter += (s, e) => ShowMenuWithAnimation();
+            //triggerButton.Click += (s, e) => ShowMenuWithAnimation();
+
+            this.Controls.Add(triggerButton);
+        }
+        private int PanelHeight { get; set; } 
+        private async void ShowMenuWithAnimation()
+        {
+            if (pnlMenus.Height == 0)
+            {
+                //pnlMenus.Visible = true;
+                for (int i = 0; i <= PanelHeight; i++)
+                {
+                    pnlMenus.Height = i;
+                    await Task.Delay(5); // Smooth animation
+                }
+                pnlMenus.Text = "◀";
+            }
+            else
+            {
+                for (int i = PanelHeight; i >= 0; i--)
+                {
+                    pnlMenus.Height = i;
+                    await Task.Delay(5); // Smooth animation
+                }
+                //pnlMenus.Visible = false;
+                 pnlMenus.Text = "▼";
+            }
+        }
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
         
 
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            //if (pnlMenus.Text == "◀")
+            //    pnlMenus.Text = "▼";
+            //else
+            //    pnlMenus.Text = "◀";
+
+           // ShowMenuWithAnimation();
         }
     }
     public static class StringExtensions
