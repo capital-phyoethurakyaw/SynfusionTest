@@ -26,6 +26,9 @@ using Syncfusion.Windows.Forms.Grid;
 using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 using System.Windows.Shapes;
 using System.Reflection;
+using System.Windows.Documents;
+using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.Windows.Forms.Tools.XPMenus;
 
 namespace Visualizer
 {
@@ -133,15 +136,8 @@ namespace Visualizer
         private void btnImport_Click(object sender, EventArgs e)
         {
             try
-            {
-                ncCompartmentPlan = new NodeCollection();
-                ncCompartmentProfile = new NodeCollection();
-                ncHullPlan = null;
-                ncHullProfile = null;
-                diagram1.FitDocument();
-                diagram1.Model.BoundaryConstraintsEnabled = true;
-                diagram1.Model.BoundaryConstraintsEnabled = false;
-                diagram1.Model.EndUpdate();
+            { 
+                #region Input
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -173,33 +169,65 @@ namespace Visualizer
                         }
                     }
                 }
+                if (string.IsNullOrEmpty(fileCompartment) || string.IsNullOrEmpty(fileHull))
+                {
+                    MessageBoxAdv.Show("Import both compartment and hull data files at once!", "Warning");
+                    return;
+                }
+                InitialFitDocument(diagram1);
+                InitialFitDocument(diagram2);
+                GetInputData(fileCompartment, fileHull);
+                #endregion
 
-                if (!string.IsNullOrEmpty(fileCompartment))
-                    LoadCompartmentData(fileCompartment);//"C:\\Users\\Asus\\OneDrive\\Documents\\CompartmentDataFromSh2.txt"
-                else
-                    return;
-                if (!string.IsNullOrEmpty(fileHull))
-                    LoadHullData(fileHull);//"C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt"
-                else
-                    return;
-                ChangePintpoint();
-                diagram1.Model.AppendChild(ncHullProfile);
-                ncHullPlan.Visible = false;  //Not working please fix later
-                diagram1.Model.AppendChild(ncHullPlan);   //Not working please fix later
-                diagram1.Model.AppendChildren(ncCompartmentPlan, out int pl);
-                diagram1.Model.AppendChildren(ncCompartmentProfile, out int pr); 
-                diagram1.Model.AppendChild(ncHullPlan);
-                diagram1.Controller.SelectAll();
-                diagram1.FlipVertical();
-                AddWaterlayer();
-                diagram1.Refresh();
+                ChangePinpointProfile(); 
+                BuildProfile(diagram1);
+
+
+                ChangePinpointPlan();
+                BuildPlan(diagram2);
+                 
             }
             catch (Exception ex)
             {
                 MessageBoxAdv.Show(ex.Message, "Error");
                 return;
             }
-            // MessageBoxAdv.Show("The files have been imported", "Information");
+        }
+        private void BuildPlan(Diagram diagram)
+        { 
+            diagram.Model.AppendChildren(ncCompartmentPlan, out int pl);
+           // diagram.Model.AppendChild(ncHullPlan);
+            diagram.Controller.SelectAll();
+            diagram.FlipVertical();
+            AddWaterlayer(diagram);
+            MoveMiddle(diagram);
+        }
+        private void BuildProfile(Diagram diagram)
+        {
+            diagram.Model.AppendChild(ncHullProfile); 
+            diagram.Model.AppendChildren(ncCompartmentProfile, out int pr); 
+            diagram.Controller.SelectAll();
+            diagram.FlipVertical();
+            AddWaterlayer(diagram);
+            MoveMiddle(diagram);
+        }
+
+        private void GetInputData(string fileCompartment,string fileHull)
+        { 
+            ncCompartmentPlan = new NodeCollection();
+            ncCompartmentProfile = new NodeCollection();
+            ncHullPlan = null;
+            ncHullProfile = null;
+            LoadCompartmentData(fileCompartment);//"C:\\Users\\Asus\\OneDrive\\Documents\\CompartmentDataFromSh2.txt"
+
+            LoadHullData(fileHull);//"C:\\Users\\Asus\\OneDrive\\Documents\\HULLDataFromSh2.txt"
+        }
+        private void InitialFitDocument(Diagram diagram)
+        {
+            diagram.FitDocument();
+            diagram.Model.BoundaryConstraintsEnabled = true;
+            diagram.Model.BoundaryConstraintsEnabled = false;
+            diagram.Model.EndUpdate();
         }
         private void LoadCompartmentData(string filePath)
         {
@@ -334,15 +362,15 @@ namespace Visualizer
             return new PointF(newX, newY);
         }
 
-        private void btnPointer_Click(object sender, EventArgs e) => diagram1.Controller.ActivateTool("SelectTool");
+        private void btnPointer_Click(object sender, EventArgs e) => _activeDiagram.Controller.ActivateTool("SelectTool");
 
-        private void btnPan_Click(object sender, EventArgs e) => diagram1.Controller.ActivateTool("PanTool");
+        private void btnPan_Click(object sender, EventArgs e) => _activeDiagram.Controller.ActivateTool("PanTool");
 
         private void btnRuler_Click(object sender, EventArgs e) => diagram1.ShowRulers = !diagram1.ShowRulers;
 
-        private void btnZoom_Click(object sender, EventArgs e) => diagram1.View.ZoomIn();
+        private void btnZoom_Click(object sender, EventArgs e) => _activeDiagram.View.ZoomIn();
         //Second half started
-        private void btnZoomOut_Click(object sender, EventArgs e) => diagram1.View.ZoomOut();
+        private void btnZoomOut_Click(object sender, EventArgs e) => _activeDiagram.View.ZoomOut();
 
         private void btnLock_Click(object sender, EventArgs e)
         {
@@ -461,7 +489,7 @@ namespace Visualizer
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            diagram1.Controller.Copy();
+            _activeDiagram.Controller.Copy();
             btnPaste.Enabled = true;
         }
         private void RotateSelectedNodes(float angle)
@@ -492,7 +520,7 @@ namespace Visualizer
         }
         private void btnPaste_Click(object sender, EventArgs e)
         {
-            diagram1.Controller.Paste();
+            _activeDiagram.Controller.Paste();
             btnPaste.Enabled = false;
         }
 
@@ -611,20 +639,46 @@ namespace Visualizer
                 }
             }
         }
+        private Diagram _activeDiagram;  // To store the currently active diagram
+        private void SetActiveDiagram(Diagram diagram)
+        {
+            _activeDiagram = diagram;
+        }
+        private void ZoomActiveDiagram(float zoomFactor)
+        {
+            if (_activeDiagram != null)  // Ensure an active diagram is set
+            {
+                _activeDiagram.Refresh();  // Refresh the diagram view
+            }
+        }
         private void Visualizer_Load(object sender, EventArgs e)
         {
-            diagram1.FitDocument();
-            diagram1.View.Grid.Visible =false; 
-            // diagram1.View.Origin= new Point(0,0);
             AddToolTips();
-            HideMenus();
-            //diagram1.Dock = DockStyle.Fill;
-            //diagram1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            MakeSettingForDiagram(diagram1);
+            MakeSettingForDiagram(diagram2);
+            diagram1.GotFocus += Diagram1_GotFocus;
+            diagram2.GotFocus += Diagram2_GotFocus;
 
         }
 
-        private void HideMenus()
+        private void Diagram2_GotFocus(object sender, EventArgs e)
         {
+            _activeDiagram = diagram2;
+            _activeDiagram.Refresh();
+            _activeDiagram.UpdateStyles();
+        }
+
+        private void Diagram1_GotFocus(object sender, EventArgs e)
+        {
+            _activeDiagram = diagram1;
+            _activeDiagram.Refresh();
+            _activeDiagram.UpdateStyles();
+        }
+
+        private void MakeSettingForDiagram(Diagram diagram)
+        {
+            diagram.FitDocument();
+            diagram.View.Grid.Visible = false;
             string[] menu = new string[] {
             "Pointer",
             "Pan",
@@ -632,14 +686,19 @@ namespace Visualizer
             "Copy",
             "Paste",
             }
-           ;
-            var cm = diagram1.ContextMenuStrip;
+   ;
+            var cm = diagram.ContextMenuStrip;
             foreach (ToolStripItem n in cm.Items)
             {
-                if (!menu.Contains(n.Text)) 
-                    n.Visible = false; 
+                if (!menu.Contains(n.Text))
+                    n.Visible = false;
             }
-             
+            diagram.View.Model.DocumentSize = new PageSize(280, 140);
+
+            //diagram.EndUpdate();
+            //diagram.Update();
+            //diagram.Refresh();
+            diagram.FitDocument();
         }
         public void ResizeDocumentToFitDiagram(Diagram diagram)
         {
@@ -696,7 +755,59 @@ namespace Visualizer
             return new Size((int)Math.Round(sizeF.Width), (int)Math.Round(sizeF.Height));
 
         }
-        private void ChangePintpoint()
+        private void ChangePinpointProfile()
+        {
+            float maxNegX = 0.0f;
+            float maxNegY = 0.0f;
+            foreach (Node n in ncCompartmentPlan)
+            {
+                if (Math.Abs(maxNegX) < Math.Abs(n.BoundingRectangle.Location.X))
+                {
+                    maxNegX = Math.Abs(n.BoundingRectangle.Location.X);
+                }
+                if (Math.Abs(maxNegY) < Math.Abs(n.BoundingRectangle.Location.Y))
+                {
+                    maxNegY = Math.Abs(n.BoundingRectangle.Location.Y);
+                }
+            }
+            //diagram1.LayoutManager = null; 
+            foreach (Node n in ncCompartmentProfile)
+            {
+                n.EditStyle.AllowMoveX = true;
+                n.EditStyle.AllowMoveY = true;
+                n.PinPoint = new PointF(n.PinPoint.X + maxNegX, (n.PinPoint.Y   ));
+            }
+            ncHullProfile.PinPoint = new PointF(ncHullProfile.PinPoint.X + maxNegX, (ncHullProfile.PinPoint.Y  ));
+             
+        }
+        private void ChangePinpointPlan()
+        {
+            float maxNegX = 0.0f;
+            float maxNegY = 0.0f;
+            foreach (Node n in ncCompartmentPlan)
+            {
+                if (Math.Abs(maxNegX) < Math.Abs(n.BoundingRectangle.Location.X))
+                {
+                    maxNegX = Math.Abs(n.BoundingRectangle.Location.X);
+                }
+                if (Math.Abs(maxNegY) < Math.Abs(n.BoundingRectangle.Location.Y))
+                {
+                    maxNegY = Math.Abs(n.BoundingRectangle.Location.Y);
+                }
+            }
+             
+            //diagram1.LayoutManager = null;
+            foreach (Node n in ncCompartmentPlan)
+            {
+                n.EditStyle.AllowMoveX = true;
+                n.EditStyle.AllowMoveY = true;
+                n.PinPoint = new PointF(n.PinPoint.X + maxNegX, (n.PinPoint.Y + maxNegY));
+            }
+
+            ncHullPlan.PinPoint = new PointF(ncHullPlan.PinPoint.X + maxNegX, (ncHullPlan.PinPoint.Y + maxNegY));
+             
+        }
+        private void ChangePintpointOld()
         {
             float maxNegX = 0.0f;
             float maxNegY = 0.0f;
@@ -734,12 +845,16 @@ namespace Visualizer
 
 
             ncHullProfile.PinPoint= new PointF(ncHullProfile.PinPoint.X + maxNegX,   (ncHullProfile.PinPoint.Y + maxNegY + 100));
+             
+            //diagram1.Model.DocumentSize = new PageSize(maxNegY, maxNegX);// System.Drawing.SizeF(landscapeWidth, landscapeHeight); 
+            //diagram1.Document.View.FitDocument();
+            //diagram1.Update();
 
             //PointF[] p = new PointF[2];
             //p[0] = new PointF(0, (ncHullProfile.PinPoint.Y + maxNegY + 310));
             //var polyline = new Syncfusion.Windows.Forms.Diagram.PolylineNode(p);
             //polyline.LineStyle.LineColor = Color.Transparent;
-          //  diagram1.Model.Nodes.Add(polyline);
+            //  diagram1.Model.Nodes.Add(polyline);
             // diagram1.Refresh();
         }
 
@@ -772,24 +887,28 @@ namespace Visualizer
             ResizeDocumentToFitDiagram(diagram1);
             diagram1.FitDocument();
         }
-
-        private void Visualizer_Resize(object sender, EventArgs e)
+        private void ResizeDiagram(Diagram diagram)
         {
             //diagram1.Width = this.ClientSize.Width - 20;  // Adjust based on desired padding
             //diagram1.Height = this.ClientSize.Height - 20; // Adjust based on desired padding
 
-           // diagram1.FitDocument();
-            ResizeDocumentToFitDiagram(diagram1);
-            diagram1.FitDocument();
-  //          diagram1.Dock = DockStyle.Fill;
-//            diagram1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            // diagram1.FitDocument();
+            //ResizeDocumentToFitDiagram(diagram);
+            diagram.FitDocument();
+            //          diagram1.Dock = DockStyle.Fill;
+            //            diagram1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        }
+        private void Visualizer_Resize(object sender, EventArgs e)
+        {
+            ResizeDiagram(diagram1);
+            ResizeDiagram(diagram2);
 
         }
 
-        private void AddWaterlayer()
+        private void AddWaterlayer(Diagram diagram)
         {
-            int diagramWidth = (int)(diagram1.Model.DocumentSize.Width);
-            int diagramHeight = (int)(diagram1.Model.DocumentSize.Height);
+            int diagramWidth = (int)(diagram.Model.DocumentSize.Width);
+            int diagramHeight = (int)(diagram.Model.DocumentSize.Height);
             Syncfusion.Windows.Forms.Diagram.Rectangle reflection = new Syncfusion.Windows.Forms.Diagram.Rectangle(0, 0, diagramWidth, diagramHeight);
             reflection.FillStyle.Type = Syncfusion.Windows.Forms.Diagram.FillStyleType.LinearGradient;
             reflection.FillStyle.Color = Color.DarkBlue;
@@ -798,7 +917,7 @@ namespace Visualizer
             reflection.LineStyle.LineWidth = 0f;
             reflection.EditStyle.AllowMoveY = false;
             reflection.EditStyle.AllowMoveX = false;
-            diagram1.Model.AppendChild(reflection);
+            diagram.Model.AppendChild(reflection);
             reflection.ZOrder = 0;
             //reflection.CanEditSegment();
             
@@ -891,6 +1010,57 @@ namespace Visualizer
             //    // Revert to the default cursor if not over the rectangle.
             //    Cursor = Cursors.Default;
             //}
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+         //   MoveMiddle();
+        }
+        private void MoveMiddle(Diagram diagram)
+        {
+            RectangleF bounds = diagram.Model.GetBoundingRect();
+            diagram.View.Model.DocumentSize = new PageSize(280, 140); //new PageSize(new PageSize(bounds.Width,bounds.Height)); 
+                                                                       //diagram1.Model.EndUpdate();
+            diagram.FitDocument();
+            diagram.Model.SizeToContent = true;
+            diagram.Model.BoundaryConstraintsEnabled = true;
+            diagram.Model.BoundaryConstraintsEnabled = false;
+            diagram.Update();
+            diagram.Refresh();
+            diagram.Controller.SelectAll();
+            MoveSelectedItems(diagram, 15, 60);
+            //diagram1.View.ZoomToSelection( new RectangleF(new PointF(0f,0f), new  SizeF(180f, 120f)));
+            // diagram1.View.ScrollVirtualBounds= bounds;
+        }
+        public void MoveSelectedItems(Diagram diagram, float offsetX, float offsetY)
+        {
+            // Step 1: Get the selected elements from the diagram
+            NodeCollection selectedItems = diagram.Controller.SelectionList;
+
+            // Step 2: Loop through each selected element and move it
+            foreach (Node node in selectedItems)
+            {
+                // Get the current location of the node
+                PointF currentPosition = node.PinPoint;
+
+                // Calculate the new position by adding the offset
+                PointF newPosition = new PointF(
+                    currentPosition.X + offsetX,
+                    currentPosition.Y + offsetY
+                );
+
+                // Set the new position of the node
+                node.PinPoint = newPosition;
+            }
+          
+            // Step 3: Refresh the diagram to reflect the new positions
+            diagram.Refresh();
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+        
+
         }
     }
     public static class StringExtensions

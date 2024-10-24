@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Diagram.Binding binding1 = new Syncfusion.Windows.Forms.Diagram.Binding();
+            Syncfusion.Windows.Forms.Diagram.Binding binding3 = new Syncfusion.Windows.Forms.Diagram.Binding();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Visualizer));
+            Syncfusion.Windows.Forms.Diagram.Binding binding1 = new Syncfusion.Windows.Forms.Diagram.Binding();
             this.diagram1 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
             this.model1 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
+            this.diagram2 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
+            this.model2 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblGeneral = new System.Windows.Forms.Label();
             this.fpGeneral = new System.Windows.Forms.FlowLayoutPanel();
@@ -81,8 +84,13 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.iconButton2 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.diagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.model1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagram2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.model2)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.fpGeneral.SuspendLayout();
             this.fpFile.SuspendLayout();
@@ -96,42 +104,45 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkHull_Top)).BeginInit();
             this.fpLabel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // diagram1
             // 
-            binding1.DefaultConnector = null;
-            binding1.DefaultNode = null;
-            binding1.Diagram = this.diagram1;
-            binding1.Id = null;
-            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
-            binding1.ParentId = null;
-            this.diagram1.Binding = binding1;
+            binding3.DefaultConnector = null;
+            binding3.DefaultNode = null;
+            binding3.Diagram = this.diagram1;
+            binding3.Id = null;
+            binding3.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding3.Label")));
+            binding3.ParentId = null;
+            this.diagram1.Binding = binding3;
             this.diagram1.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
             this.diagram1.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
             this.diagram1.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
             this.diagram1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagram1.EnableTouchMode = false;
             this.diagram1.LayoutManager = null;
-            this.diagram1.Location = new System.Drawing.Point(3, 3);
+            this.diagram1.Location = new System.Drawing.Point(0, 0);
             this.diagram1.Model = this.model1;
             this.diagram1.Name = "diagram1";
             this.diagram1.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram1.ScrollVirtualBounds")));
-            this.diagram1.Size = new System.Drawing.Size(481, 686);
+            this.diagram1.Size = new System.Drawing.Size(481, 322);
             this.diagram1.SmartSizeBox = false;
-            this.diagram1.TabIndex = 1;
+            this.diagram1.TabIndex = 0;
             this.diagram1.Text = "diagram1";
             // 
             // 
             // 
+            this.diagram1.View.BackgroundColor = System.Drawing.Color.White;
             this.diagram1.View.ClientRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.diagram1.View.Controller = this.diagram1.Controller;
             this.diagram1.View.Grid.MinPixelSpacing = 4F;
+            this.diagram1.View.PageBorderStyle.BorderColor = System.Drawing.Color.White;
             this.diagram1.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds")));
             this.diagram1.View.ZoomType = Syncfusion.Windows.Forms.Diagram.ZoomType.Center;
-            this.diagram1.MouseEnter += new System.EventHandler(this.diagram1_MouseEnter);
-            this.diagram1.MouseHover += new System.EventHandler(this.diagram1_MouseHover);
-            this.diagram1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.diagram1_MouseMove);
             // 
             // model1
             // 
@@ -140,15 +151,63 @@
             this.model1.DocumentScale.DisplayName = "No Scale";
             this.model1.DocumentScale.Height = 1F;
             this.model1.DocumentScale.Width = 1F;
-            this.model1.DocumentSize.Height = 566.9291F;
-            this.model1.DocumentSize.Width = 396.8504F;
+            this.model1.DocumentSize.Height = 1169F;
+            this.model1.DocumentSize.Width = 827F;
             this.model1.LineStyle.DashPattern = null;
             this.model1.LineStyle.LineColor = System.Drawing.Color.Black;
-            this.model1.LogicalSize = new System.Drawing.SizeF(396.8504F, 566.9291F);
+            this.model1.LogicalSize = new System.Drawing.SizeF(827F, 1169F);
             this.model1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.model1.ShadowStyle.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             this.model1.ShadowStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
-            this.model1.SizeToContent = true;
+            // 
+            // diagram2
+            // 
+            binding1.DefaultConnector = null;
+            binding1.DefaultNode = null;
+            binding1.Diagram = this.diagram2;
+            binding1.Id = null;
+            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
+            binding1.ParentId = null;
+            this.diagram2.Binding = binding1;
+            this.diagram2.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
+            this.diagram2.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
+            this.diagram2.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
+            this.diagram2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.diagram2.EnableTouchMode = false;
+            this.diagram2.LayoutManager = null;
+            this.diagram2.Location = new System.Drawing.Point(0, 0);
+            this.diagram2.Model = this.model2;
+            this.diagram2.Name = "diagram2";
+            this.diagram2.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram2.ScrollVirtualBounds")));
+            this.diagram2.Size = new System.Drawing.Size(481, 360);
+            this.diagram2.SmartSizeBox = false;
+            this.diagram2.TabIndex = 0;
+            this.diagram2.Text = "diagram2";
+            // 
+            // 
+            // 
+            this.diagram2.View.BackgroundColor = System.Drawing.Color.White;
+            this.diagram2.View.ClientRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.diagram2.View.Controller = this.diagram2.Controller;
+            this.diagram2.View.Grid.MinPixelSpacing = 4F;
+            this.diagram2.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds")));
+            this.diagram2.View.ZoomType = Syncfusion.Windows.Forms.Diagram.ZoomType.Center;
+            // 
+            // model2
+            // 
+            this.model2.AlignmentType = Syncfusion.Windows.Forms.Diagram.AlignmentType.SelectedNode;
+            this.model2.BackgroundStyle.PathBrushStyle = Syncfusion.Windows.Forms.Diagram.PathGradientBrushStyle.RectangleCenter;
+            this.model2.DocumentScale.DisplayName = "No Scale";
+            this.model2.DocumentScale.Height = 1F;
+            this.model2.DocumentScale.Width = 1F;
+            this.model2.DocumentSize.Height = 1169F;
+            this.model2.DocumentSize.Width = 827F;
+            this.model2.LineStyle.DashPattern = null;
+            this.model2.LineStyle.LineColor = System.Drawing.Color.Black;
+            this.model2.LogicalSize = new System.Drawing.SizeF(827F, 1169F);
+            this.model2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.model2.ShadowStyle.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
+            this.model2.ShadowStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             // 
             // flowLayoutPanel1
             // 
@@ -192,6 +251,8 @@
             this.fpGeneral.Controls.Add(this.btnCopy);
             this.fpGeneral.Controls.Add(this.btnPaste);
             this.fpGeneral.Controls.Add(this.btnImport);
+            this.fpGeneral.Controls.Add(this.iconButton1);
+            this.fpGeneral.Controls.Add(this.iconButton2);
             this.fpGeneral.Dock = System.Windows.Forms.DockStyle.Top;
             this.fpGeneral.Location = new System.Drawing.Point(3, 26);
             this.fpGeneral.Name = "fpGeneral";
@@ -980,8 +1041,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.45055F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.54945F));
-            this.tableLayoutPanel1.Controls.Add(this.diagram1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -990,6 +1051,66 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(985, 692);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.diagram1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.diagram2);
+            this.splitContainer1.Size = new System.Drawing.Size(481, 686);
+            this.splitContainer1.SplitterDistance = 322;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.Black;
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.ForeColor = System.Drawing.Color.White;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Instalod;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 20;
+            this.iconButton1.Location = new System.Drawing.Point(84, 61);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(75, 23);
+            this.iconButton1.TabIndex = 13;
+            this.iconButton1.Text = "Fit";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Visible = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
+            // iconButton2
+            // 
+            this.iconButton2.BackColor = System.Drawing.Color.Black;
+            this.iconButton2.FlatAppearance.BorderSize = 0;
+            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton2.ForeColor = System.Drawing.Color.White;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.Instalod;
+            this.iconButton2.IconColor = System.Drawing.Color.White;
+            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton2.IconSize = 20;
+            this.iconButton2.Location = new System.Drawing.Point(165, 61);
+            this.iconButton2.Name = "iconButton2";
+            this.iconButton2.Size = new System.Drawing.Size(75, 23);
+            this.iconButton2.TabIndex = 14;
+            this.iconButton2.Text = "Move";
+            this.iconButton2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton2.UseVisualStyleBackColor = false;
+            this.iconButton2.Visible = false;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // Visualizer
             // 
@@ -1002,6 +1123,8 @@
             this.Resize += new System.EventHandler(this.Visualizer_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.diagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.model1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagram2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.model2)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.fpGeneral.ResumeLayout(false);
             this.fpFile.ResumeLayout(false);
@@ -1015,6 +1138,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkHull_Top)).EndInit();
             this.fpLabel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1068,7 +1195,12 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private FontAwesome.Sharp.IconButton btnFit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private Syncfusion.Windows.Forms.Diagram.Controls.Diagram diagram1;
         private Syncfusion.Windows.Forms.Diagram.Model model1;
+        private Syncfusion.Windows.Forms.Diagram.Controls.Diagram diagram2;
+        private Syncfusion.Windows.Forms.Diagram.Model model2;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconButton2;
     }
 }
