@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Diagram.Binding binding2 = new Syncfusion.Windows.Forms.Diagram.Binding();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Visualizer));
             Syncfusion.Windows.Forms.Diagram.Binding binding3 = new Syncfusion.Windows.Forms.Diagram.Binding();
-            this.diagram1 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
-            this.model1 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Visualizer));
+            Syncfusion.Windows.Forms.Diagram.Binding binding1 = new Syncfusion.Windows.Forms.Diagram.Binding();
             this.diagram2 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
             this.model2 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
+            this.diagram1 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
+            this.model1 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblGeneral = new System.Windows.Forms.Label();
             this.fpGeneral = new System.Windows.Forms.FlowLayoutPanel();
@@ -77,23 +77,21 @@
             this.btnOrthoLabel = new FontAwesome.Sharp.IconButton();
             this.btnDirectedLabel = new FontAwesome.Sharp.IconButton();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnPointer = new FontAwesome.Sharp.IconButton();
-            this.btnPan = new FontAwesome.Sharp.IconButton();
-            this.btnZoom = new FontAwesome.Sharp.IconButton();
-            this.btnZoomOut = new FontAwesome.Sharp.IconButton();
-            this.btnCopy = new FontAwesome.Sharp.IconButton();
+            this.pnlMenus = new System.Windows.Forms.Panel();
             this.btnImport = new FontAwesome.Sharp.IconButton();
+            this.btnPointer = new FontAwesome.Sharp.IconButton();
+            this.btnCopy = new FontAwesome.Sharp.IconButton();
+            this.btnPan = new FontAwesome.Sharp.IconButton();
+            this.btnZoomOut = new FontAwesome.Sharp.IconButton();
+            this.btnZoom = new FontAwesome.Sharp.IconButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblMenuSetting = new System.Windows.Forms.Label();
-            this.pnlMenus = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.diagram1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.model1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.diagram2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.model2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.model1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.fpGeneral.SuspendLayout();
             this.fpFile.SuspendLayout();
@@ -106,61 +104,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkHull_Side)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHull_Top)).BeginInit();
             this.fpLabel.SuspendLayout();
+            this.pnlMenus.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.pnlMenus.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // diagram1
-            // 
-            binding2.DefaultConnector = null;
-            binding2.DefaultNode = null;
-            binding2.Diagram = this.diagram1;
-            binding2.Id = null;
-            binding2.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding2.Label")));
-            binding2.ParentId = null;
-            this.diagram1.Binding = binding2;
-            this.diagram1.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
-            this.diagram1.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
-            this.diagram1.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
-            this.diagram1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.diagram1.EnableTouchMode = false;
-            this.diagram1.LayoutManager = null;
-            this.diagram1.Location = new System.Drawing.Point(3, 40);
-            this.diagram1.Model = this.model1;
-            this.diagram1.Name = "diagram1";
-            this.diagram1.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram1.ScrollVirtualBounds")));
-            this.diagram1.Size = new System.Drawing.Size(602, 317);
-            this.diagram1.SmartSizeBox = false;
-            this.diagram1.TabIndex = 0;
-            this.diagram1.Text = "diagram1";
-            // 
-            // 
-            // 
-            this.diagram1.View.BackgroundColor = System.Drawing.Color.White;
-            this.diagram1.View.ClientRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.diagram1.View.Controller = this.diagram1.Controller;
-            this.diagram1.View.Grid.MinPixelSpacing = 4F;
-            this.diagram1.View.PageBorderStyle.BorderColor = System.Drawing.Color.White;
-            this.diagram1.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds")));
-            this.diagram1.View.ZoomType = Syncfusion.Windows.Forms.Diagram.ZoomType.Center;
-            // 
-            // model1
-            // 
-            this.model1.AlignmentType = Syncfusion.Windows.Forms.Diagram.AlignmentType.SelectedNode;
-            this.model1.BackgroundStyle.PathBrushStyle = Syncfusion.Windows.Forms.Diagram.PathGradientBrushStyle.RectangleCenter;
-            this.model1.DocumentScale.DisplayName = "No Scale";
-            this.model1.DocumentScale.Height = 1F;
-            this.model1.DocumentScale.Width = 1F;
-            this.model1.DocumentSize.Height = 1169F;
-            this.model1.DocumentSize.Width = 827F;
-            this.model1.LineStyle.DashPattern = null;
-            this.model1.LineStyle.LineColor = System.Drawing.Color.Black;
-            this.model1.LogicalSize = new System.Drawing.SizeF(827F, 1169F);
-            this.model1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.model1.ShadowStyle.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
-            this.model1.ShadowStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             // 
             // diagram2
             // 
@@ -177,11 +124,11 @@
             this.diagram2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagram2.EnableTouchMode = false;
             this.diagram2.LayoutManager = null;
-            this.diagram2.Location = new System.Drawing.Point(3, 363);
+            this.diagram2.Location = new System.Drawing.Point(3, 360);
             this.diagram2.Model = this.model2;
             this.diagram2.Name = "diagram2";
             this.diagram2.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram2.ScrollVirtualBounds")));
-            this.diagram2.Size = new System.Drawing.Size(602, 320);
+            this.diagram2.Size = new System.Drawing.Size(818, 323);
             this.diagram2.SmartSizeBox = false;
             this.diagram2.TabIndex = 0;
             this.diagram2.Text = "diagram2";
@@ -192,8 +139,10 @@
             this.diagram2.View.ClientRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.diagram2.View.Controller = this.diagram2.Controller;
             this.diagram2.View.Grid.MinPixelSpacing = 4F;
-            this.diagram2.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds1")));
+            this.diagram2.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds")));
             this.diagram2.View.ZoomType = Syncfusion.Windows.Forms.Diagram.ZoomType.Center;
+            this.diagram2.SizeChanged += new System.EventHandler(this.diagram2_SizeChanged);
+            this.diagram2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.diagram2_MouseDown);
             // 
             // model2
             // 
@@ -211,6 +160,58 @@
             this.model2.ShadowStyle.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             this.model2.ShadowStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
             // 
+            // diagram1
+            // 
+            binding1.DefaultConnector = null;
+            binding1.DefaultNode = null;
+            binding1.Diagram = this.diagram1;
+            binding1.Id = null;
+            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
+            binding1.ParentId = null;
+            this.diagram1.Binding = binding1;
+            this.diagram1.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
+            this.diagram1.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
+            this.diagram1.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
+            this.diagram1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.diagram1.EnableTouchMode = false;
+            this.diagram1.LayoutManager = null;
+            this.diagram1.Location = new System.Drawing.Point(3, 42);
+            this.diagram1.Model = this.model1;
+            this.diagram1.Name = "diagram1";
+            this.diagram1.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram1.ScrollVirtualBounds")));
+            this.diagram1.Size = new System.Drawing.Size(818, 312);
+            this.diagram1.SmartSizeBox = false;
+            this.diagram1.TabIndex = 0;
+            this.diagram1.Text = "diagram1";
+            // 
+            // 
+            // 
+            this.diagram1.View.BackgroundColor = System.Drawing.Color.White;
+            this.diagram1.View.ClientRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.diagram1.View.Controller = this.diagram1.Controller;
+            this.diagram1.View.Grid.MinPixelSpacing = 4F;
+            this.diagram1.View.PageBorderStyle.BorderColor = System.Drawing.Color.White;
+            this.diagram1.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds1")));
+            this.diagram1.View.ZoomType = Syncfusion.Windows.Forms.Diagram.ZoomType.Center;
+            this.diagram1.SizeChanged += new System.EventHandler(this.diagram1_SizeChanged);
+            this.diagram1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.diagram1_MouseDown);
+            // 
+            // model1
+            // 
+            this.model1.AlignmentType = Syncfusion.Windows.Forms.Diagram.AlignmentType.SelectedNode;
+            this.model1.BackgroundStyle.PathBrushStyle = Syncfusion.Windows.Forms.Diagram.PathGradientBrushStyle.RectangleCenter;
+            this.model1.DocumentScale.DisplayName = "No Scale";
+            this.model1.DocumentScale.Height = 1F;
+            this.model1.DocumentScale.Width = 1F;
+            this.model1.DocumentSize.Height = 1169F;
+            this.model1.DocumentSize.Width = 827F;
+            this.model1.LineStyle.DashPattern = null;
+            this.model1.LineStyle.LineColor = System.Drawing.Color.Black;
+            this.model1.LogicalSize = new System.Drawing.SizeF(827F, 1169F);
+            this.model1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.model1.ShadowStyle.Color = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
+            this.model1.ShadowStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -225,7 +226,7 @@
             this.flowLayoutPanel1.Controls.Add(this.lblLabel);
             this.flowLayoutPanel1.Controls.Add(this.fpLabel);
             this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(617, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(833, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1, 686);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -943,130 +944,25 @@
             this.label2.TabIndex = 10;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnPointer
+            // pnlMenus
             // 
-            this.btnPointer.BackColor = System.Drawing.Color.Black;
-            this.btnPointer.FlatAppearance.BorderSize = 0;
-            this.btnPointer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPointer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            this.btnPointer.ForeColor = System.Drawing.Color.White;
-            this.btnPointer.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleUp;
-            this.btnPointer.IconColor = System.Drawing.Color.White;
-            this.btnPointer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPointer.IconSize = 12;
-            this.btnPointer.Location = new System.Drawing.Point(328, 1);
-            this.btnPointer.Name = "btnPointer";
-            this.btnPointer.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnPointer.Size = new System.Drawing.Size(60, 24);
-            this.btnPointer.TabIndex = 2;
-            this.btnPointer.Text = "Pointer";
-            this.btnPointer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPointer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPointer.UseVisualStyleBackColor = false;
-            this.btnPointer.Click += new System.EventHandler(this.btnPointer_Click);
-            this.btnPointer.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnPointer.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
-            // btnPan
-            // 
-            this.btnPan.BackColor = System.Drawing.Color.Black;
-            this.btnPan.FlatAppearance.BorderSize = 0;
-            this.btnPan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPan.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            this.btnPan.ForeColor = System.Drawing.Color.White;
-            this.btnPan.IconChar = FontAwesome.Sharp.IconChar.Hand;
-            this.btnPan.IconColor = System.Drawing.Color.White;
-            this.btnPan.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPan.IconSize = 12;
-            this.btnPan.Location = new System.Drawing.Point(263, 1);
-            this.btnPan.Name = "btnPan";
-            this.btnPan.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnPan.Size = new System.Drawing.Size(59, 24);
-            this.btnPan.TabIndex = 3;
-            this.btnPan.Text = "Pan";
-            this.btnPan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPan.UseVisualStyleBackColor = false;
-            this.btnPan.Click += new System.EventHandler(this.btnPan_Click);
-            this.btnPan.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnPan.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
-            // btnZoom
-            // 
-            this.btnZoom.BackColor = System.Drawing.Color.Black;
-            this.btnZoom.FlatAppearance.BorderSize = 0;
-            this.btnZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            this.btnZoom.ForeColor = System.Drawing.Color.White;
-            this.btnZoom.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
-            this.btnZoom.IconColor = System.Drawing.Color.White;
-            this.btnZoom.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnZoom.IconSize = 12;
-            this.btnZoom.Location = new System.Drawing.Point(198, 1);
-            this.btnZoom.Name = "btnZoom";
-            this.btnZoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnZoom.Size = new System.Drawing.Size(59, 24);
-            this.btnZoom.TabIndex = 7;
-            this.btnZoom.Text = "Z-In";
-            this.btnZoom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnZoom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnZoom.UseVisualStyleBackColor = false;
-            this.btnZoom.Click += new System.EventHandler(this.btnZoom_Click);
-            this.btnZoom.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnZoom.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
-            // btnZoomOut
-            // 
-            this.btnZoomOut.BackColor = System.Drawing.Color.Black;
-            this.btnZoomOut.FlatAppearance.BorderSize = 0;
-            this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZoomOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            this.btnZoomOut.ForeColor = System.Drawing.Color.White;
-            this.btnZoomOut.IconChar = FontAwesome.Sharp.IconChar.Minus;
-            this.btnZoomOut.IconColor = System.Drawing.Color.White;
-            this.btnZoomOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnZoomOut.IconSize = 12;
-            this.btnZoomOut.Location = new System.Drawing.Point(133, 1);
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnZoomOut.Size = new System.Drawing.Size(59, 24);
-            this.btnZoomOut.TabIndex = 9;
-            this.btnZoomOut.Text = "Z-Out";
-            this.btnZoomOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnZoomOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnZoomOut.UseVisualStyleBackColor = false;
-            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
-            this.btnZoomOut.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnZoomOut.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
-            // btnCopy
-            // 
-            this.btnCopy.BackColor = System.Drawing.Color.Black;
-            this.btnCopy.FlatAppearance.BorderSize = 0;
-            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
-            this.btnCopy.ForeColor = System.Drawing.Color.White;
-            this.btnCopy.IconChar = FontAwesome.Sharp.IconChar.Copy;
-            this.btnCopy.IconColor = System.Drawing.Color.White;
-            this.btnCopy.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCopy.IconSize = 12;
-            this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopy.Location = new System.Drawing.Point(68, 1);
-            this.btnCopy.Name = "btnCopy";
-            this.btnCopy.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnCopy.Size = new System.Drawing.Size(59, 24);
-            this.btnCopy.TabIndex = 2;
-            this.btnCopy.Text = "Copy";
-            this.btnCopy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCopy.UseVisualStyleBackColor = false;
-            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
-            this.btnCopy.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.btnCopy.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            this.pnlMenus.Controls.Add(this.btnImport);
+            this.pnlMenus.Controls.Add(this.btnPointer);
+            this.pnlMenus.Controls.Add(this.btnCopy);
+            this.pnlMenus.Controls.Add(this.btnPan);
+            this.pnlMenus.Controls.Add(this.btnZoomOut);
+            this.pnlMenus.Controls.Add(this.btnZoom);
+            this.pnlMenus.Location = new System.Drawing.Point(3, 3);
+            this.pnlMenus.Name = "pnlMenus";
+            this.pnlMenus.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pnlMenus.Size = new System.Drawing.Size(370, 24);
+            this.pnlMenus.TabIndex = 13;
+            this.pnlMenus.Visible = false;
             // 
             // btnImport
             // 
             this.btnImport.BackColor = System.Drawing.Color.Black;
+            this.btnImport.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnImport.FlatAppearance.BorderSize = 0;
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
@@ -1075,10 +971,10 @@
             this.btnImport.IconColor = System.Drawing.Color.White;
             this.btnImport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnImport.IconSize = 12;
-            this.btnImport.Location = new System.Drawing.Point(3, 1);
+            this.btnImport.Location = new System.Drawing.Point(-2, 0);
             this.btnImport.Name = "btnImport";
             this.btnImport.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnImport.Size = new System.Drawing.Size(59, 24);
+            this.btnImport.Size = new System.Drawing.Size(62, 24);
             this.btnImport.TabIndex = 12;
             this.btnImport.Text = "Import";
             this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1088,12 +984,138 @@
             this.btnImport.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
             this.btnImport.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
             // 
+            // btnPointer
+            // 
+            this.btnPointer.BackColor = System.Drawing.Color.Black;
+            this.btnPointer.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnPointer.FlatAppearance.BorderSize = 0;
+            this.btnPointer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPointer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
+            this.btnPointer.ForeColor = System.Drawing.Color.White;
+            this.btnPointer.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleUp;
+            this.btnPointer.IconColor = System.Drawing.Color.White;
+            this.btnPointer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPointer.IconSize = 12;
+            this.btnPointer.Location = new System.Drawing.Point(60, 0);
+            this.btnPointer.Name = "btnPointer";
+            this.btnPointer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnPointer.Size = new System.Drawing.Size(62, 24);
+            this.btnPointer.TabIndex = 2;
+            this.btnPointer.Text = "Pointer";
+            this.btnPointer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPointer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPointer.UseVisualStyleBackColor = false;
+            this.btnPointer.Click += new System.EventHandler(this.btnPointer_Click);
+            this.btnPointer.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnPointer.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.BackColor = System.Drawing.Color.Black;
+            this.btnCopy.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCopy.FlatAppearance.BorderSize = 0;
+            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopy.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
+            this.btnCopy.ForeColor = System.Drawing.Color.White;
+            this.btnCopy.IconChar = FontAwesome.Sharp.IconChar.Copy;
+            this.btnCopy.IconColor = System.Drawing.Color.White;
+            this.btnCopy.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCopy.IconSize = 12;
+            this.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCopy.Location = new System.Drawing.Point(122, 0);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnCopy.Size = new System.Drawing.Size(62, 24);
+            this.btnCopy.TabIndex = 2;
+            this.btnCopy.Text = "Copy";
+            this.btnCopy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCopy.UseVisualStyleBackColor = false;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            this.btnCopy.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnCopy.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnPan
+            // 
+            this.btnPan.BackColor = System.Drawing.Color.Black;
+            this.btnPan.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnPan.FlatAppearance.BorderSize = 0;
+            this.btnPan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPan.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
+            this.btnPan.ForeColor = System.Drawing.Color.White;
+            this.btnPan.IconChar = FontAwesome.Sharp.IconChar.Hand;
+            this.btnPan.IconColor = System.Drawing.Color.White;
+            this.btnPan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPan.IconSize = 12;
+            this.btnPan.Location = new System.Drawing.Point(184, 0);
+            this.btnPan.Name = "btnPan";
+            this.btnPan.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnPan.Size = new System.Drawing.Size(62, 24);
+            this.btnPan.TabIndex = 3;
+            this.btnPan.Text = "Pan";
+            this.btnPan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPan.UseVisualStyleBackColor = false;
+            this.btnPan.Click += new System.EventHandler(this.btnPan_Click);
+            this.btnPan.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnPan.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnZoomOut
+            // 
+            this.btnZoomOut.BackColor = System.Drawing.Color.Black;
+            this.btnZoomOut.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnZoomOut.FlatAppearance.BorderSize = 0;
+            this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZoomOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
+            this.btnZoomOut.ForeColor = System.Drawing.Color.White;
+            this.btnZoomOut.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            this.btnZoomOut.IconColor = System.Drawing.Color.White;
+            this.btnZoomOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnZoomOut.IconSize = 12;
+            this.btnZoomOut.Location = new System.Drawing.Point(246, 0);
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnZoomOut.Size = new System.Drawing.Size(62, 24);
+            this.btnZoomOut.TabIndex = 9;
+            this.btnZoomOut.Text = "Z-Out";
+            this.btnZoomOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnZoomOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnZoomOut.UseVisualStyleBackColor = false;
+            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
+            this.btnZoomOut.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnZoomOut.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
+            // btnZoom
+            // 
+            this.btnZoom.BackColor = System.Drawing.Color.Black;
+            this.btnZoom.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnZoom.FlatAppearance.BorderSize = 0;
+            this.btnZoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.5F);
+            this.btnZoom.ForeColor = System.Drawing.Color.White;
+            this.btnZoom.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
+            this.btnZoom.IconColor = System.Drawing.Color.White;
+            this.btnZoom.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnZoom.IconSize = 12;
+            this.btnZoom.Location = new System.Drawing.Point(308, 0);
+            this.btnZoom.Name = "btnZoom";
+            this.btnZoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnZoom.Size = new System.Drawing.Size(62, 24);
+            this.btnZoom.TabIndex = 7;
+            this.btnZoom.Text = "Z-In";
+            this.btnZoom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnZoom.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnZoom.UseVisualStyleBackColor = false;
+            this.btnZoom.Click += new System.EventHandler(this.btnZoom_Click);
+            this.btnZoom.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
+            this.btnZoom.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 99.13908F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8609272F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 99.46488F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.535117F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1101,8 +1123,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(620, 692);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 692F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(835, 692);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -1110,70 +1132,32 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.diagram1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.diagram2, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.pnlMenus, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.393586F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.08455F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.41339F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(608, 686);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.685131F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.35569F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.81341F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(824, 686);
             this.tableLayoutPanel2.TabIndex = 1;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.lblMenuSetting);
-            this.flowLayoutPanel2.Controls.Add(this.pnlMenus);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(602, 31);
-            this.flowLayoutPanel2.TabIndex = 11;
-            // 
-            // lblMenuSetting
-            // 
-            this.lblMenuSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F);
-            this.lblMenuSetting.ForeColor = System.Drawing.Color.White;
-            this.lblMenuSetting.Location = new System.Drawing.Point(577, 0);
-            this.lblMenuSetting.Name = "lblMenuSetting";
-            this.lblMenuSetting.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblMenuSetting.Size = new System.Drawing.Size(22, 34);
-            this.lblMenuSetting.TabIndex = 3;
-            this.lblMenuSetting.Text = "«";
-            this.lblMenuSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblMenuSetting.Click += new System.EventHandler(this.label4_Click);
-            this.lblMenuSetting.MouseEnter += new System.EventHandler(this.btnDirectedLabel_MouseEnter);
-            this.lblMenuSetting.MouseLeave += new System.EventHandler(this.btnDirectedLabel_MouseLeave);
-            // 
-            // pnlMenus
-            // 
-            this.pnlMenus.Controls.Add(this.btnImport);
-            this.pnlMenus.Controls.Add(this.btnPointer);
-            this.pnlMenus.Controls.Add(this.btnCopy);
-            this.pnlMenus.Controls.Add(this.btnPan);
-            this.pnlMenus.Controls.Add(this.btnZoomOut);
-            this.pnlMenus.Controls.Add(this.btnZoom);
-            this.pnlMenus.Location = new System.Drawing.Point(158, 3);
-            this.pnlMenus.Name = "pnlMenus";
-            this.pnlMenus.Size = new System.Drawing.Size(413, 28);
-            this.pnlMenus.TabIndex = 13;
             // 
             // Visualizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 692);
+            this.ClientSize = new System.Drawing.Size(835, 692);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Visualizer";
             this.Load += new System.EventHandler(this.Visualizer_Load);
+            this.SizeChanged += new System.EventHandler(this.Visualizer_SizeChanged);
             this.Resize += new System.EventHandler(this.Visualizer_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.diagram1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.model1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.diagram2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.model2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.model1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.fpGeneral.ResumeLayout(false);
             this.fpFile.ResumeLayout(false);
@@ -1186,10 +1170,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkHull_Side)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkHull_Top)).EndInit();
             this.fpLabel.ResumeLayout(false);
+            this.pnlMenus.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.pnlMenus.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1219,39 +1202,37 @@
         private Syncfusion.Windows.Forms.Tools.CheckBoxAdv chkHull_Top;
         private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.IconButton btnRotate;
-        private FontAwesome.Sharp.IconButton btnCopy;
         private FontAwesome.Sharp.IconButton btnPaste;
         private FontAwesome.Sharp.IconButton btnDelete;
         private FontAwesome.Sharp.IconButton btnRedo;
         private FontAwesome.Sharp.IconButton btnUndo;
-        private FontAwesome.Sharp.IconButton btnZoom;
-        private FontAwesome.Sharp.IconButton btnPointer;
-        private FontAwesome.Sharp.IconButton btnPan;
         private FontAwesome.Sharp.IconButton btnRuler;
         private FontAwesome.Sharp.IconButton btnPrint;
         private FontAwesome.Sharp.IconButton btnPreview;
         private FontAwesome.Sharp.IconButton btnSave;
         private FontAwesome.Sharp.IconButton btnSaveAs;
-        private FontAwesome.Sharp.IconButton btnImport;
         private FontAwesome.Sharp.IconButton btnFlip;
         private FontAwesome.Sharp.IconButton btnReset;
         private FontAwesome.Sharp.IconButton btnLock;
         private FontAwesome.Sharp.IconButton btnUngroup;
-        private FontAwesome.Sharp.IconButton btnZoomOut;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private FontAwesome.Sharp.IconButton btnColor;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private FontAwesome.Sharp.IconButton btnFit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Syncfusion.Windows.Forms.Diagram.Controls.Diagram diagram1;
-        private Syncfusion.Windows.Forms.Diagram.Model model1;
-        private Syncfusion.Windows.Forms.Diagram.Controls.Diagram diagram2;
-        private Syncfusion.Windows.Forms.Diagram.Model model2;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton iconButton2;
-        private System.Windows.Forms.Label lblMenuSetting;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Syncfusion.Windows.Forms.Diagram.Controls.Diagram diagram1;
+        private Syncfusion.Windows.Forms.Diagram.Model model1;
         private System.Windows.Forms.Panel pnlMenus;
+        private FontAwesome.Sharp.IconButton btnImport;
+        private FontAwesome.Sharp.IconButton btnPointer;
+        private FontAwesome.Sharp.IconButton btnCopy;
+        private FontAwesome.Sharp.IconButton btnPan;
+        private FontAwesome.Sharp.IconButton btnZoomOut;
+        private FontAwesome.Sharp.IconButton btnZoom;
+        private Syncfusion.Windows.Forms.Diagram.Controls.Diagram diagram2;
+        private Syncfusion.Windows.Forms.Diagram.Model model2;
     }
 }

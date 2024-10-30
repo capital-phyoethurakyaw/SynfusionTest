@@ -29,6 +29,7 @@ using System.Reflection;
 using System.Windows.Documents;
 using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.Windows.Forms.Tools.XPMenus;
+//using System.Windows.Media;
 
 namespace Visualizer
 {
@@ -127,7 +128,7 @@ namespace Visualizer
                 //    pnlMenus.Text = "▼";
                 //else
                 //    pnlMenus.Text = "◀";
-                ShowMenuWithAnimation();
+               // ShowMenuWithAnimation();
             }
         }
         private void btnDirectedLabel_MouseLeave(object sender, EventArgs e)
@@ -144,14 +145,14 @@ namespace Visualizer
             //{
             //    ShowMenuWithAnimation();
             //}
-            if (sender is Label lblmenu && lblmenu.Name == "lblMenuSetting")
-            {
-                if (pnlMenus.Text == "◀")
-                    pnlMenus.Text = "▼";
-                else
-                    pnlMenus.Text = "◀";
-                //ShowMenuWithAnimation();
-            }
+            //if (sender is Label lblmenu && lblmenu.Name == "lblMenuSetting")
+            //{
+            //    if (pnlMenus.Text == "◀")
+            //        pnlMenus.Text = "▼";
+            //    else
+            //        pnlMenus.Text = "◀";
+            //    //ShowMenuWithAnimation();
+            //}
         }
 
         private void btnImport_Click(object sender, EventArgs e)
@@ -675,6 +676,7 @@ namespace Visualizer
                 _activeDiagram.Refresh();  // Refresh the diagram view
             }
         }
+        private Button bd;
         private void Visualizer_Load(object sender, EventArgs e)
         {
             AddToolTips();
@@ -682,9 +684,180 @@ namespace Visualizer
             MakeSettingForDiagram(diagram2);
             diagram1.GotFocus += Diagram1_GotFocus;
             diagram2.GotFocus += Diagram2_GotFocus;
-            PanelHeight= pnlMenus.Height;
+            //PanelHeight = 355-  lblMenuSetting.Width; 
+
+            floatButton = new IconButton
+            {
+                Text = "+ ",
+                Width = 40,
+                Height = btnZoom.Height+5,
+                BackColor = System.Drawing.Color.LightBlue,
+                FlatStyle = FlatStyle.Flat,
+               // IconChar= IconChar.Toolbox,
+               // ImageAlign= ContentAlignment.MiddleCenter,
+                TextImageRelation= TextImageRelation.Overlay,
+                
+            };
+            //floatButton.BackColor= Color.Transparent;
+            //floatButton.BackColor= Color.Transparent;
+            floatButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            floatButton.Visible = false;
+            this.Controls.Add(floatButton);
+            floatButton.BringToFront();
+            floatButton.Click += FloatButton_Click;
+            SetFloatButtonLocation();
+          
         }
 
+        private void FloatButton_Click(object sender, EventArgs e)
+        {
+            SetLocationPanel();
+            //ResizeDiagram(_activeDiagram);
+            //this.Refresh();
+            //this.Update();
+            //this.UpdateStyles();
+            //pnlMenus.BringToFront();
+
+            //ContextMenuStrip menu = new ContextMenuStrip();
+            //menu.Items.Add("Option 1");
+            //menu.Items.Add("Option 2");
+            //menu.Items.Add("Option 3" ); 
+            //Point buttonScreenPos = floatButton.PointToScreen(new Point(0, floatButton.Height)); 
+            //menu.Show(buttonScreenPos);
+
+            //ContextMenuStrip menu = new ContextMenuStrip();
+
+            //// Create a Button to be embedded in the menu
+            //Button embeddedButton = new Button();
+            //embeddedButton.Text = "Click Me!";
+            //embeddedButton.AutoSize = true;
+            //embeddedButton.Click += EmbeddedButton_Click;  // Assign click event
+
+            //// Host the button in a ToolStripControlHost
+            //ToolStripControlHost host = new ToolStripControlHost(embeddedButton);
+
+            //// Add the hosted button to the ContextMenuStrip
+            //menu.Items.Add(host);
+
+            //// Display the ContextMenuStrip next to the button that was clicked
+            //Point buttonPosition = floatButton.PointToScreen(new Point(0, floatButton.Height));
+            //menu.Show(buttonPosition);
+
+            //FlowLayoutPanel panel = new FlowLayoutPanel();
+            //panel.FlowDirection = FlowDirection.LeftToRight;
+            //panel.AutoSize = true;
+            //panel.BackColor = Color.White;
+
+            //// Add buttons or labels as items to the FlowLayoutPanel
+            //panel.Controls.Add(new Button() { Text = "Option 1", AutoSize = true });
+            //panel.Controls.Add(new Button() { Text = "Option 2", AutoSize = true });
+            //panel.Controls.Add(new Button() { Text = "Option 3", AutoSize = true });
+
+            //// Create a ToolStripControlHost to host the FlowLayoutPanel
+            //ToolStripControlHost host = new ToolStripControlHost(panel);
+
+            //// Create a ContextMenuStrip and add the hosted panel
+            //ContextMenuStrip menu = new ContextMenuStrip();
+            //menu.Items.Add(host);
+
+            //// Get the button's screen position
+            //Point buttonScreenPos = floatButton.PointToScreen(new Point(0, floatButton.Height));
+
+            //// Show the menu at the calculated position
+            //menu.Show(buttonScreenPos);
+        }
+        private void EmbeddedButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Button inside ContextMenu clicked!");
+        }
+        private void SetLocationPanel()
+        {
+
+            //var buttonLocation = floatButton.PointToScreen(Point.Empty);
+
+            //int panelX = buttonLocation.X - pnlMenus.Width-20;
+            //int panelY = buttonLocation.Y + 10;
+            //pnlMenus.Visible = !pnlMenus.Visible;
+            ////pnlMenus.BringToFront();
+            //  this.Update();
+            ////pnlMenus.Refresh();
+            //pnlMenus.Location = this.PointToClient(new Point(panelX, panelY));
+            //if (pnlMenus.Location.X == 3 && pnlMenus.Location.Y == 3)
+            //{
+            //      pnlMenus.Location= this.PointToClient(new Point(panelX, panelY));
+
+            //}
+            //else
+            //{
+
+            //}
+
+
+            ////pnlMenus.BringToFront();   // ***DONT DELETE THIS COMMMAND REFRESH PANEL 
+            ///
+
+            //var buttonLocation = floatButton.PointToScreen(Point.Empty);
+
+            //int panelX = buttonLocation.X - pnlMenus.Width -3;
+            //int panelY = buttonLocation.Y - 3;
+            //pnlMenus.Visible = !pnlMenus.Visible; 
+            //this.Update(); pnlMenus.BringToFront();
+
+            //pnlMenus.Dock = DockStyle.None;
+            //pnlMenus.Location = this.PointToClient(new Point(panelX, panelY));
+            //if (pnlMenus.Location.X == 3 && pnlMenus.Location.Y == 3)
+            //{
+            //    //pnlMenus.Top += 100;
+            //  //  pnlMenus.Location = this.PointToScreen(new Point(panelX, panelY));
+
+            //}
+            //else
+            //{
+
+            //} 
+
+            //pnlMenus.Width = btnImport.Width * 6;
+          
+            ToolStripControlHost host = new ToolStripControlHost(pnlMenus)
+            {
+                AutoSize = false,
+                Size = pnlMenus.Size, 
+            }; 
+            pnlMenus.Margin = new Padding(0);
+            pnlMenus.Padding= new Padding(0);   
+            host.Margin = new Padding(0);  
+            host.Padding = new Padding(0);  
+            ContextMenuStrip menu = new ContextMenuStrip() { 
+            };
+            menu.ShowImageMargin = false;
+            menu.ShowCheckMargin = false; 
+            menu.Padding = new Padding(0);
+            menu.Margin = new Padding(0);
+            menu.Renderer = new CustomStripRenderer(); 
+            menu.Items.Add(host); 
+           
+            menu.Size = pnlMenus.Size;
+            menu.BackColor = Color.LightBlue; 
+            menu.AutoSize = false;
+            int panelX = floatButton.PointToScreen(Point.Empty).X - menu.Width;
+            int panelY = floatButton.PointToScreen(Point.Empty).Y; 
+          
+            menu.Show(new Point(panelX, panelY));
+
+        }
+
+        private void SetFloatButtonLocation()
+        {
+            if (_activeDiagram == null) return;
+            int buttonX = _activeDiagram.Width - floatButton.Width;  // 10 px padding from right
+            int buttonY = _activeDiagram.ClientRectangle.Top;  // 10 px padding from top
+
+            floatButton.Location = _activeDiagram.PointToScreen(new Point(buttonX, buttonY));
+            floatButton.Location = this.PointToClient(floatButton.Location);
+             
+        }
+         private IconButton floatButton;
+         
         private void Diagram2_GotFocus(object sender, EventArgs e)
         {
             _activeDiagram = diagram2;
@@ -897,8 +1070,7 @@ namespace Visualizer
             //polyline.LineStyle.LineColor = Color.Transparent;
             //  diagram1.Model.Nodes.Add(polyline);
             // diagram1.Refresh();
-        }
-
+        } 
         private void btnColor_Click(object sender, EventArgs e)
         {
             var d = btnPrint.IconChar;
@@ -939,7 +1111,7 @@ namespace Visualizer
         private void Visualizer_Resize(object sender, EventArgs e)
         {
             ResizeDiagram(diagram1);
-            ResizeDiagram(diagram2); 
+            ResizeDiagram(diagram2);
         }
 
         private void AddWaterlayer(Diagram diagram)
@@ -1114,32 +1286,31 @@ namespace Visualizer
         private int PanelHeight { get; set; } 
         private async void ShowMenuWithAnimation()
         {
-            if (pnlMenus.Height == 0)
-            {
-                //pnlMenus.Visible = true;
-                for (int i = 0; i <= PanelHeight; i++)
-                {
-                    pnlMenus.Height = i;
-                    await Task.Delay(5); // Smooth animation
-                }
-                pnlMenus.Text = "◀";
-            }
-            else
-            {
-                for (int i = PanelHeight; i >= 0; i--)
-                {
-                    pnlMenus.Height = i;
-                    await Task.Delay(5); // Smooth animation
-                }
-                //pnlMenus.Visible = false;
-                 pnlMenus.Text = "▼";
-            }
+            //if (fplMenus.Width == lblMenuSetting.Width)
+            //{
+            //    //pnlMenus.Visible = true;
+            //    for (int i = 0; i <= PanelHeight; i++)
+            //    {
+            //        fplMenus.Width = i;
+            //        await Task.Delay(5); // Smooth animation
+            //    }
+            //    // fplMenus.Text = "◀";
+            //}
+            //else
+            //{
+            //    for (int i = PanelHeight; i >= 0; i--)
+            //    {
+            //        fplMenus.Width = i;
+            //        await Task.Delay(5); // Smooth animation
+            //    }
+            //    //pnlMenus.Visible = false;
+            //    // fplMenus.Text = "▼";
+            //}
         }
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
-        
-
+         
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -1148,8 +1319,49 @@ namespace Visualizer
             //    pnlMenus.Text = "▼";
             //else
             //    pnlMenus.Text = "◀";
+            pnlMenus.Visible= !pnlMenus.Visible;
+            //ShowMenuWithAnimation();
+        }
 
-           // ShowMenuWithAnimation();
+        private void diagram1_SizeChanged(object sender, EventArgs e)
+        {
+            SetFloatButtonLocation();
+            SetLocationPanel();
+        }
+
+        private void diagram2_SizeChanged(object sender, EventArgs e)
+        {
+            SetFloatButtonLocation();
+            SetLocationPanel();
+        } 
+        private void diagram1_MouseDown(object sender, MouseEventArgs e)
+        {
+            floatButton.Visible = true; 
+            SetFloatButtonLocation();
+           // SetLocationPanel();
+        } 
+        private void diagram2_MouseDown(object sender, MouseEventArgs e)
+        {
+             floatButton.Visible = true;
+            SetFloatButtonLocation();
+            //SetLocationPanel();
+        }
+
+        private void label4_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Visualizer_SizeChanged(object sender, EventArgs e)
+        {
+            //diagram1.Update();
+            //diagram1.Invalidate();
+            //diagram1.UpdateStyles();
+            //diagram2.Update();
+            //diagram2.Invalidate();
+            //diagram2.UpdateStyles();
+            //pnlMenus.Update();
+            //pnlMenus.Refresh();
         }
     }
     public static class StringExtensions
@@ -1180,6 +1392,14 @@ namespace Visualizer
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
+        }
+    }
+    public class CustomStripRenderer : ToolStripProfessionalRenderer
+    {
+        protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+        {
+            e.TextFormat = TextFormatFlags.Left;  // Align text to the left without padding
+            base.OnRenderItemText(e);
         }
     }
 }
