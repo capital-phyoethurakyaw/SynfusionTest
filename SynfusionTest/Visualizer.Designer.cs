@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Syncfusion.Windows.Forms.Diagram.Binding binding3 = new Syncfusion.Windows.Forms.Diagram.Binding();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Visualizer));
             Syncfusion.Windows.Forms.Diagram.Binding binding1 = new Syncfusion.Windows.Forms.Diagram.Binding();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Visualizer));
+            Syncfusion.Windows.Forms.Diagram.Binding binding2 = new Syncfusion.Windows.Forms.Diagram.Binding();
             this.diagram2 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
             this.model2 = new Syncfusion.Windows.Forms.Diagram.Model(this.components);
             this.diagram1 = new Syncfusion.Windows.Forms.Diagram.Controls.Diagram(this.components);
@@ -111,24 +111,24 @@
             // 
             // diagram2
             // 
-            binding3.DefaultConnector = null;
-            binding3.DefaultNode = null;
-            binding3.Diagram = this.diagram2;
-            binding3.Id = null;
-            binding3.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding3.Label")));
-            binding3.ParentId = null;
-            this.diagram2.Binding = binding3;
+            binding1.DefaultConnector = null;
+            binding1.DefaultNode = null;
+            binding1.Diagram = this.diagram2;
+            binding1.Id = null;
+            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
+            binding1.ParentId = null;
+            this.diagram2.Binding = binding1;
             this.diagram2.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
             this.diagram2.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
             this.diagram2.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
             this.diagram2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagram2.EnableTouchMode = false;
             this.diagram2.LayoutManager = null;
-            this.diagram2.Location = new System.Drawing.Point(3, 360);
+            this.diagram2.Location = new System.Drawing.Point(3, 339);
             this.diagram2.Model = this.model2;
             this.diagram2.Name = "diagram2";
             this.diagram2.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram2.ScrollVirtualBounds")));
-            this.diagram2.Size = new System.Drawing.Size(818, 323);
+            this.diagram2.Size = new System.Drawing.Size(606, 305);
             this.diagram2.SmartSizeBox = false;
             this.diagram2.TabIndex = 0;
             this.diagram2.Text = "diagram2";
@@ -162,24 +162,24 @@
             // 
             // diagram1
             // 
-            binding1.DefaultConnector = null;
-            binding1.DefaultNode = null;
-            binding1.Diagram = this.diagram1;
-            binding1.Id = null;
-            binding1.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding1.Label")));
-            binding1.ParentId = null;
-            this.diagram1.Binding = binding1;
+            binding2.DefaultConnector = null;
+            binding2.DefaultNode = null;
+            binding2.Diagram = this.diagram1;
+            binding2.Id = null;
+            binding2.Label = ((System.Collections.Generic.List<string>)(resources.GetObject("binding2.Label")));
+            binding2.ParentId = null;
+            this.diagram1.Binding = binding2;
             this.diagram1.Controller.Constraint = Syncfusion.Windows.Forms.Diagram.Constraints.PageEditable;
             this.diagram1.Controller.DefaultConnectorTool = Syncfusion.Windows.Forms.Diagram.ConnectorTool.OrgLineConnectorTool;
             this.diagram1.Controller.PasteOffset = new System.Drawing.SizeF(10F, 10F);
             this.diagram1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagram1.EnableTouchMode = false;
             this.diagram1.LayoutManager = null;
-            this.diagram1.Location = new System.Drawing.Point(3, 42);
+            this.diagram1.Location = new System.Drawing.Point(3, 39);
             this.diagram1.Model = this.model1;
             this.diagram1.Name = "diagram1";
             this.diagram1.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("diagram1.ScrollVirtualBounds")));
-            this.diagram1.Size = new System.Drawing.Size(818, 312);
+            this.diagram1.Size = new System.Drawing.Size(606, 294);
             this.diagram1.SmartSizeBox = false;
             this.diagram1.TabIndex = 0;
             this.diagram1.Text = "diagram1";
@@ -189,6 +189,7 @@
             this.diagram1.View.BackgroundColor = System.Drawing.Color.White;
             this.diagram1.View.ClientRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
             this.diagram1.View.Controller = this.diagram1.Controller;
+            this.diagram1.View.Grid.Color = System.Drawing.Color.LightBlue;
             this.diagram1.View.Grid.MinPixelSpacing = 4F;
             this.diagram1.View.PageBorderStyle.BorderColor = System.Drawing.Color.White;
             this.diagram1.View.ScrollVirtualBounds = ((System.Drawing.RectangleF)(resources.GetObject("resource.ScrollVirtualBounds1")));
@@ -226,9 +227,9 @@
             this.flowLayoutPanel1.Controls.Add(this.lblLabel);
             this.flowLayoutPanel1.Controls.Add(this.fpLabel);
             this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(833, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(621, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1, 686);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1, 647);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.Visible = false;
             // 
@@ -1112,7 +1113,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.LightBlue;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 99.46488F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.535117F));
@@ -1124,7 +1125,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 692F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(835, 692);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(622, 653);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -1141,14 +1142,15 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.685131F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.35569F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.81341F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(824, 686);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(612, 647);
             this.tableLayoutPanel2.TabIndex = 1;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // Visualizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 692);
+            this.ClientSize = new System.Drawing.Size(622, 653);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Visualizer";
             this.Load += new System.EventHandler(this.Visualizer_Load);

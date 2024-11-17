@@ -38,6 +38,8 @@ namespace Visualizer
         public Visualizer()//pyk
         {
             InitializeComponent();
+            pnlMenus.Visible = false;
+            tableLayoutPanel1.RowStyles[0].Height = 0;
             //diagram1.DefaultContextMenuEnabled = false;
         }
 
@@ -706,12 +708,25 @@ namespace Visualizer
             floatButton.BringToFront();
             floatButton.Click += FloatButton_Click;
             SetFloatButtonLocation();
-          
+
+            //menu.Opening += Menu_Opening;
+            //menu.Closing += Menu_Closing;
+        }
+        private bool isContextMenuOpen = false;  // Set the flag to true when opening
+
+        private void Menu_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            isContextMenuOpen = false;
+        }
+
+        private void Menu_Opening(object sender, CancelEventArgs e)
+        {
+            isContextMenuOpen= true;
         }
 
         private void FloatButton_Click(object sender, EventArgs e)
         {
-            SetLocationPanel();
+            SetLocationPanel(true);
             //ResizeDiagram(_activeDiagram);
             //this.Refresh();
             //this.Update();
@@ -770,9 +785,13 @@ namespace Visualizer
         {
             MessageBox.Show("Button inside ContextMenu clicked!");
         }
-        private void SetLocationPanel()
+        private void SetLocationPanel(bool IsTrigger =false)
         {
-
+            if (floatButton == null) return;
+            if (!IsTrigger && !isContextMenuOpen)
+            {
+                return;
+            }
             //var buttonLocation = floatButton.PointToScreen(Point.Empty);
 
             //int panelX = buttonLocation.X - pnlMenus.Width-20;
@@ -826,8 +845,9 @@ namespace Visualizer
             pnlMenus.Margin = new Padding(0);
             pnlMenus.Padding= new Padding(0);   
             host.Margin = new Padding(0);  
-            host.Padding = new Padding(0);  
-            ContextMenuStrip menu = new ContextMenuStrip() { 
+            host.Padding = new Padding(0);
+            ContextMenuStrip menu = new ContextMenuStrip()
+            {
             };
             menu.ShowImageMargin = false;
             menu.ShowCheckMargin = false; 
@@ -845,7 +865,7 @@ namespace Visualizer
             menu.Show(new Point(panelX, panelY));
 
         }
-
+     
         private void SetFloatButtonLocation()
         {
             if (_activeDiagram == null) return;
@@ -1362,6 +1382,11 @@ namespace Visualizer
             //diagram2.UpdateStyles();
             //pnlMenus.Update();
             //pnlMenus.Refresh();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
     public static class StringExtensions

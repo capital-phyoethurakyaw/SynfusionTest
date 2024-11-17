@@ -19,7 +19,7 @@ namespace SynfusionTest
             SyncfusionLicenseProvider.RegisterLicense("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1JpR2tGfV5ycEVDal9RTnRYUj0eQnxTdEFiWX1XcXNWRmJUWEd1XQ==");//("Ngo9BigBOggjHTQxAR8/V1NDaF5cWWtCf1NpR2pGfV5ycEVBal1STnZdUiweQnxTdEFiWX1ccXxWT2VfUEB0Ww==");//("MDAxQDMyMzcyZTMwMmUzMGVIQmM1bWd3dHBYZlg4S0MycTZaRDFNN0pEdG5oOENuVW5YTEVmbVlzMjg9");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run( new  Visualizer.Visualizer());
+            Application.Run(new Visualizer.Visualizer());
         }
     }
 }
